@@ -4,13 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "postinstall": "prisma generate",
+    "postinstall": "prisma generate --no-engine",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
     "@prisma/client": "^6.15.0",
@@ -21,16 +18,16 @@
     "vercel": "^47.0.1"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.12",
+    "@types/node": "^20.19.12",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "eslint": "^9.34.0",
     "eslint-config-next": "15.5.2",
     "prisma": "^6.15.0",
-    "tailwindcss": "^4",
+    "tailwindcss": "^4.1.12",
     "tsx": "^4.20.5",
-    "typescript": "^5"
+    "typescript": "^5.9.2"
   }
 }
