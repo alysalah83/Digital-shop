@@ -1,0 +1,100 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  address   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products  Product[]
+  cart      CartItem[]
+  whiteList WhiteListItem[]
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  products Product[]
+}
+
+model Product {
+  id                 Int      @id @default(autoincrement())
+  name               String
+  price              Float
+  discountPercentage Float    @default(0)
+  brand              String
+  rating             Float    @default(0)
+  reviews            Json     @default("[]")
+  stock              Int      @default(0)
+  image              String
+  description        String
+  categoryId         Int
+  userId             String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  category      Category       @relation(fields: [categoryId], references: [id])
+  user          User           @relation(fields: [userId], references: [id])
+  cartItem      CartItem?
+  whiteListItem WhiteListItem?
+
+  @@index([price])
+  @@index([categoryId])
+  @@index([createdAt])
+  @@index([userId])
+  @@index([categoryId, price])
+  @@index([categoryId, createdAt])
+}
+
+model CartItem {
+  id        Int      @id @default(autoincrement())
+  quantity  Int      @default(1)
+  userId    String
+  productId Int      @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([userId, productId])
+  @@index([userId])
+  @@index([productId])
+  @@index([userId, createdAt])
+}
+
+model WhiteListItem {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  productId Int      @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@unique([userId, productId])
+  @@index([userId])
+  @@index([productId])
+  @@index([userId, createdAt])
+}
