@@ -36,7 +36,9 @@ async function ShopPage({
         <ProductsSideBarFilters />
 
         {products.length === 0 ? (
-          <EmptyPage icon="shoppingBag" label="No products to display" />
+          <div className="flex h-full w-full items-center justify-center rounded-lg bg-white p-6">
+            <EmptyPage icon="shoppingBag" label="No products to display" />
+          </div>
         ) : (
           <ShopProducts
             products={products}
