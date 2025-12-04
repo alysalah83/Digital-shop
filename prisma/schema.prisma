@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,17 +7,68 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id        String   @id @default(uuid())
-  name      String
-  email     String   @unique
-  address   String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+model Account {
+  id                String   @id @default(cuid())
+  userId            String   @map("user_id")
+  type              String
+  provider          String
+  providerAccountId String   @map("provider_account_id")
+  refresh_token     String?  @db.Text
+  access_token      String?  @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?  @db.Text
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt()
 
-  products  Product[]
-  cart      CartItem[]
-  whiteList WhiteListItem[]
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt()
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model User {
+  id             String          @id @default(cuid())
+  name           String?
+  address        String?
+  email          String?         @unique
+  emailVerified  DateTime?       @map("email_verified")
+  image          String?
+  accounts       Account[]
+  sessions       Session[]
+  products       Product[]
+  cartItems      CartItem[]
+  whiteListItems WhiteListItem[]
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt()
+
+  @@map("users")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
 }
 
 model Category {
@@ -31,9 +76,27 @@ model Category {
   name      String   @unique
   image     String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt()
 
   products Product[]
+
+  @@map("categories")
+}
+
+model Review {
+  id            Int      @id @default(autoincrement())
+  comment       String
+  rating        Int
+  reviewerName  String
+  reviewerEmail String
+  productId     Int      @map("product_id")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt()
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("reviews")
 }
 
 model Product {
@@ -43,19 +106,19 @@ model Product {
   discountPercentage Float    @default(0)
   brand              String
   rating             Float    @default(0)
-  reviews            Json     @default("[]")
   stock              Int      @default(0)
   image              String
   description        String
-  categoryId         Int
-  userId             String
+  categoryId         Int      @map("category_id")
+  userId             String   @map("user_id")
   createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  updatedAt          DateTime @updatedAt()
 
-  category      Category       @relation(fields: [categoryId], references: [id])
-  user          User           @relation(fields: [userId], references: [id])
-  cartItem      CartItem?
+  category      Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  cartItem      CartItem[]
   whiteListItem WhiteListItem?
+  reviews       Review[]
 
   @@index([price])
   @@index([categoryId])
@@ -63,37 +126,45 @@ model Product {
   @@index([userId])
   @@index([categoryId, price])
   @@index([categoryId, createdAt])
+  @@map("products")
 }
 
 model CartItem {
   id        Int      @id @default(autoincrement())
   quantity  Int      @default(1)
-  userId    String
-  productId Int      @unique
+  userId    String?  @map("user_id")
+  guestId   String?  @map("guest_id")
+  productId Int      @map("product_id")
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt()
 
-  user    User    @relation(fields: [userId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  user    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
-  @@unique([userId, productId])
   @@index([userId])
+  @@index([guestId])
   @@index([productId])
+  @@index([userId, productId])
+  @@index([guestId, productId])
   @@index([userId, createdAt])
+  @@index([guestId, createdAt])
+  @@map("cart_items")
 }
 
 model WhiteListItem {
   id        Int      @id @default(autoincrement())
-  userId    String
-  productId Int      @unique
+  userId    String?  @map("user_id")
+  guestId   String?  @map("guest_id")
+  productId Int      @unique @map("product_id")
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  updatedAt DateTime @updatedAt()
 
-  user    User    @relation(fields: [userId], references: [id])
-  product Product @relation(fields: [productId], references: [id])
+  user    User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([userId, productId])
   @@index([userId])
   @@index([productId])
   @@index([userId, createdAt])
+  @@map("whitelist_items")
 }
