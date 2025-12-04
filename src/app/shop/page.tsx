@@ -1,3 +1,4 @@
+import EmptyPage from "@/components/common/EmptyPage";
 import PageHeader from "@/components/layouts/PageHeader";
 import ProductsSideBarFilters from "@/features/products-filters/components/ProductsSideBarFilters";
 import { SelectFilterValue } from "@/features/products-filters/types/productFilters.types";
@@ -34,11 +35,15 @@ async function ShopPage({
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-14 px-6 py-10 md:flex-row md:items-stretch md:px-10">
         <ProductsSideBarFilters />
 
-        <ShopProducts
-          products={products}
-          productsTotalCount={totalCount}
-          layoutShape={params.layoutShape}
-        />
+        {products.length === 0 ? (
+          <EmptyPage icon="shoppingBag" label="No products to display" />
+        ) : (
+          <ShopProducts
+            products={products}
+            productsTotalCount={totalCount}
+            layoutShape={params.layoutShape}
+          />
+        )}
       </div>
     </div>
   );
