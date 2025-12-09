@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Digital Shop 🛍️  
+A modern, high-performance e-commerce platform built with **Next.js 16**, focused on scalability, performance, and clean full-stack engineering.
 
-## Getting Started
+---
 
-First, run the development server:
+## 🚀 Overview
+Digital Shop is a full-stack e-commerce application featuring server-rendered product pages, a database-backed cart system, guest session support, and a completely custom UI built from scratch with Tailwind CSS.  
+The project highlights production-ready architecture using **Next.js Server Components, Prisma ORM, and optimized caching strategies**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ✨ Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 🛒 Core Shopping Experience
+- Server-rendered product listing with **search, filtering, and sorting**
+- Global **search bar in the navigation** for instant product lookup
+- Product detail page with full description, image gallery, and pricing
+- **Review section** where users can submit ratings and comments
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 👤 Authentication & Users
+- Google OAuth with NextAuth.js
+- User profiles, addresses, and order history
+- Protected routes with server-side session validation
 
-## Learn More
+### 🛍️ Cart & Wishlist
+- **Works for both guests and logged-in users**
+- Guest users receive a **unique cookie-based session ID**
+- Cart and wishlist stored in the database (no localStorage)
+- **Auto-sync cart on login** (guest → user)
+- Fully custom Tailwind components for cart & wishlist UI
 
-To learn more about Next.js, take a look at the following resources:
+### 📦 Product Management
+- Create, edit, and delete products
+- Image upload support
+- Access control so users can only manage their own products
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### ⚡ Performance & Architecture
+- Built using **Next.js 16 Server Components**
+- Optimized with **Cache + Revalidation**
+- Prisma ORM with PostgreSQL
+- Fully responsive, hand-built UI using Tailwind CSS
+- Server-first data flow (no Redux)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🛠️ Tech Stack
+- **Next.js 16**
+- **TypeScript**
+- **Prisma ORM**
+- **PostgreSQL**
+- **NextAuth.js**
+- **Tailwind CSS**
+- **Vercel**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📌 What This Project Demonstrates
+- Strong full-stack engineering (frontend + backend + database)
+- Scalable server-side architecture using Next.js 16
+- Real-world e-commerce logic: authentication, cart, wishlist, reviews
+- Hand-crafted UI without component libraries
+- Modern production-ready development patterns
+
+---
+
+## 👨‍💻 Author
+**Aly Salah**
+
+GitHub: [@alysalah83](https://github.com/alysalah83)
+LinkedIn:[@AlySalah](www.linkedin.com/in/aly-salah-456942286)
+
+---
+
+If you like this project, consider giving it a ⭐ on GitHub!
