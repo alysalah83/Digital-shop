@@ -1,21 +1,19 @@
 "use client";
 
 import ButtonIcon from "@/components/common/ButtonIcon";
-import { useState } from "react";
 import { deleteFromCart } from "../actions/cart.action";
+import { useCart } from "@/store/cartStore";
 
 function CartDeleteBtn({ productId }: { productId: number }) {
-  const [isPending, setIsPending] = useState(false);
+  const { removeFromCart } = useCart();
   return (
     <ButtonIcon
       btnType="delete"
       icon="trash"
       ariaLabel="remove from cart button"
-      disabled={isPending}
       onClick={async () => {
-        setIsPending(true);
+        removeFromCart(productId);
         await deleteFromCart(productId);
-        setIsPending(false);
       }}
     />
   );

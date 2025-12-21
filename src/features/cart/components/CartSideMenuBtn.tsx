@@ -1,16 +1,25 @@
 "use client";
 
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useLayoutEffect, useState } from "react";
 import CartSideMenu from "./CartSideMenu";
 import { CartItemSummery } from "../types/cart.types";
+import { useCart } from "@/store/cartStore";
 
 interface CartSideMenuBtn {
   children: React.ReactNode;
-  cartProductsPromise: Promise<CartItemSummery[]>;
+  cartProducts: CartItemSummery[];
 }
 
-function CartSideMenuBtn({ children, cartProductsPromise }: CartSideMenuBtn) {
+function CartSideMenuBtn({ children, cartProducts }: CartSideMenuBtn) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const { setCartItems } = useCart();
+
+  useLayoutEffect(() => {
+    const clientCartProducts = cartProducts.map((item) => item.product);
+    console.log(clientCartProducts);
+    setCartItems(clientCartProducts);
+  }, [cartProducts]);
 
   return (
     <>
@@ -31,7 +40,6 @@ function CartSideMenuBtn({ children, cartProductsPromise }: CartSideMenuBtn) {
         <CartSideMenu
           isMenuOpen={isMenuOpen}
           onMenuClose={() => setIsMenuOpen(false)}
-          cartProductsPromise={cartProductsPromise}
         />
       </Suspense>
     </>

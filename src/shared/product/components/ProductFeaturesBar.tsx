@@ -44,7 +44,7 @@ async function ProductFeaturesBar({
         </Modal>
       </li>
       <li>
-        <CartBtn productId={productId} isProductInCart={isProductInCart} />
+        <CartBtn productId={productId} productSummery={productSummery} />
       </li>
       <li>
         <WhiteListBtn

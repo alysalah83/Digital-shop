@@ -32,8 +32,8 @@ function ButtonIcon({
     "flex group/buttonIcon items-center justify-center border border-gray-300 transition duration-300 ",
     rounded,
     {
-      "hover:bg-blue-600 active:bg-blue-600":
-        btnType === "default" && !disabled && !isPending,
+      "hover:bg-blue-400 active:bg-blue-400":
+        btnType === "default" && !disabled && !isPending && !isActive,
       "hover:bg-red-600/20 hover:border-red-600 active:bg-red-600/20 active:border-red-600":
         btnType === "delete",
     },

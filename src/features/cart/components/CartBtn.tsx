@@ -2,28 +2,32 @@
 
 import ButtonIcon from "@/components/common/ButtonIcon";
 import { addToCart, deleteFromCart } from "../actions/cart.action";
-import { useOptimistic, useTransition } from "react";
+import { useCart } from "@/store/cartStore";
+import { ProductWithDescriptionItem } from "@/shared/product/types/product.type";
 
 function CartBtn({
   productId,
-  isProductInCart,
+  productSummery,
 }: {
   productId: number;
-  isProductInCart: boolean;
+  productSummery: ProductWithDescriptionItem;
 }) {
-  const [isPending, startTransition] = useTransition();
-  const [optimisticInCart, setOptimisticInCart] = useOptimistic(
+  const {
     isProductInCart,
-    (state, newState: boolean) => newState,
-  );
+    addToCart: addToCartState,
+    removeFromCart,
+  } = useCart();
 
-  const handleClick = () => {
-    startTransition(async () => {
-      setOptimisticInCart(!isProductInCart);
+  const isProductInCartState = isProductInCart(productId);
 
-      if (isProductInCart) await deleteFromCart(productId);
-      else await addToCart(productId);
-    });
+  const handleClick = async () => {
+    if (isProductInCartState) {
+      removeFromCart(productId);
+      await deleteFromCart(productId);
+    } else {
+      addToCartState({ id: productId, ...productSummery });
+      await addToCart(productId);
+    }
   };
 
   return (
@@ -32,9 +36,7 @@ function CartBtn({
       size="medium"
       rounded="rounded-full"
       ariaLabel="add to cart button"
-      isActive={optimisticInCart}
-      isPending={isPending}
-      disabled={isPending}
+      isActive={isProductInCartState}
       onClick={handleClick}
     />
   );

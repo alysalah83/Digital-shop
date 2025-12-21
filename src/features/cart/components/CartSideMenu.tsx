@@ -1,27 +1,22 @@
 import Button from "@/components/common/Button";
 import { ICONS_MAP } from "@/consts/iconsMap";
 import Link from "next/link";
-import { CartItemSummery } from "../types/cart.types";
-import { use } from "react";
+
 import EmptyPage from "@/components/common/EmptyPage";
 import CartSideMenuItem from "./CartSideMenuItem";
+import { useCart } from "@/store/cartStore";
 
 interface CartSideMenu {
   isMenuOpen: boolean;
   onMenuClose: () => void;
-  cartProductsPromise: Promise<CartItemSummery[]>;
 }
 
-function CartSideMenu({
-  isMenuOpen,
-  onMenuClose,
-  cartProductsPromise,
-}: CartSideMenu) {
-  const cartProducts = use(cartProductsPromise);
+function CartSideMenu({ isMenuOpen, onMenuClose }: CartSideMenu) {
+  const { carProductItems } = useCart();
 
-  const cartItemsCount = cartProducts.length;
+  const cartItemsCount = carProductItems.length;
   const cartItemsTotalPrice = Number(
-    cartProducts.reduce((sum, item) => sum + item.product.price, 0).toFixed(2),
+    carProductItems.reduce((sum, item) => sum + item.price, 0).toFixed(2),
   );
 
   return (
@@ -39,8 +34,8 @@ function CartSideMenu({
       </div>
       {cartItemsCount > 0 ? (
         <ul className="flex flex-col gap-6 overflow-auto lg:gap-8">
-          {cartProducts?.map((item) => (
-            <CartSideMenuItem item={item} key={item.id} />
+          {carProductItems?.map((item) => (
+            <CartSideMenuItem product={item} key={item.id} />
           ))}
         </ul>
       ) : (

@@ -15,4 +15,13 @@ type CartItemSummery = Prisma.CartItemGetPayload<{
   };
 }>;
 
-export type { CartItem, CartItemSummery };
+type CartProduct = Prisma.ProductGetPayload<{
+  select: {
+    id: true;
+    name: true;
+    image: true;
+    price: true;
+  };
+}>;
+
+export type { CartItem, CartItemSummery, CartProduct };

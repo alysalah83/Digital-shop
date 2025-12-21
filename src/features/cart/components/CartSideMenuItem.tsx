@@ -1,19 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CartItemSummery } from "../types/cart.types";
-import ButtonIcon from "@/components/common/ButtonIcon";
+import { CartProduct } from "../types/cart.types";
 import CartDeleteBtn from "./CartDeleteBtn";
 
 interface CartSideMenuItem {
-  item: CartItemSummery;
+  product: CartProduct;
 }
 
-function CartSideMenuItem({ item }: CartSideMenuItem) {
-  const {
-    id,
-    quantity,
-    product: { image, name, price, id: productId },
-  } = item;
+function CartSideMenuItem({ product }: CartSideMenuItem) {
+  const { id: productId, image, name, price } = product;
 
   return (
     <li className="flex gap-2">
@@ -32,9 +27,7 @@ function CartSideMenuItem({ item }: CartSideMenuItem) {
       </div>
       <div className="flex flex-grow flex-col gap-3 p-3">
         <h4 className="text-warp text-sm font-bold text-gray-500 md:text-base lg:text-lg">
-          <Link href={`/shop/${id}`}>
-            {name} {quantity !== 1 && quantity && <span>( {quantity} )</span>}
-          </Link>
+          <Link href={`/shop/${productId}`}>{name}</Link>
         </h4>
         <span className="font-semibold tracking-wide text-gray-600 lg:font-bold">
           ${price}
