@@ -1,5 +1,5 @@
-import PageHeader from "@/components/layouts/PageHeader";
-import SkeletonLoader from "@/components/ui/SkeletonLoader";
+import PageHeader from "@/shared/components/layouts/PageHeader";
+import SkeletonLoader from "@/shared/components/ui/SkeletonLoader";
 import CartContent from "@/features/cart/components/CartContent";
 import { Suspense } from "react";
 

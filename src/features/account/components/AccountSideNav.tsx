@@ -7,8 +7,8 @@ import { LiaSignOutAltSolid } from "react-icons/lia";
 import { RiMenuUnfold3Line, RiMenuUnfold4Line } from "react-icons/ri";
 import { ACCOUNT_NAV_ITEMS } from "../consts/account.consts";
 import { signoutAction } from "../actions/account.actions";
-import Button from "@/components/common/Button";
-import { ICONS_MAP } from "@/consts/iconsMap";
+import Button from "@/shared/components/common/Button";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 
 function AccountSideNav() {
   const [isSideBarOpened, setIsSideBarOpened] = useState(false);

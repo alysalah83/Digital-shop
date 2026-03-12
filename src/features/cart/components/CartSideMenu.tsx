@@ -1,10 +1,10 @@
-import Button from "@/components/common/Button";
-import { ICONS_MAP } from "@/consts/iconsMap";
+import Button from "@/shared/components/common/Button";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import Link from "next/link";
 
-import EmptyPage from "@/components/common/EmptyPage";
+import EmptyPage from "@/shared/components/common/EmptyPage";
 import CartSideMenuItem from "./CartSideMenuItem";
-import { useCart } from "@/store/cartStore";
+import { useCart } from "@/shared/store/cartStore";
 
 interface CartSideMenu {
   isMenuOpen: boolean;

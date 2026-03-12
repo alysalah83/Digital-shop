@@ -1,6 +1,6 @@
 "use client";
 
-import ButtonIcon from "@/components/common/ButtonIcon";
+import ButtonIcon from "@/shared/components/common/ButtonIcon";
 import { useOptimistic, useState, useTransition } from "react";
 import { toggleWhiteList } from "../actions/whiteList.action";
 

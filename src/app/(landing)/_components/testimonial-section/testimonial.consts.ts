@@ -1,0 +1,3 @@
+const TESTiMONIALS_COUNT = 3;
+
+export { TESTiMONIALS_COUNT };

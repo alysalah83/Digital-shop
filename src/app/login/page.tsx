@@ -1,4 +1,4 @@
-import PageHeader from "@/components/layouts/PageHeader";
+import PageHeader from "@/shared/components/layouts/PageHeader";
 import Logo from "@/features/navigation/components/Logo";
 import googleLogo from "@/../public/Logo-google-icon-PNG.png";
 import Image from "next/image";

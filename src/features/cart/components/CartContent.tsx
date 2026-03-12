@@ -3,7 +3,7 @@ import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
 import CartTable from "./CartTable";
 import CartSubtotal from "./CartSubtotal";
-import EmptyPage from "@/components/common/EmptyPage";
+import EmptyPage from "@/shared/components/common/EmptyPage";
 
 async function CartContent() {
   const session = await auth();

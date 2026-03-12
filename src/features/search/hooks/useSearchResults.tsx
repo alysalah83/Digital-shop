@@ -1,6 +1,6 @@
 "use client";
 
-import { SEARCH_CACHE_TIME } from "@/features/shop/consts/shop.consts";
+import { SEARCH_CACHE_TIME } from "@/app/shop/(shop)/_components/shop.consts";
 import { ProductSummary } from "@/shared/product/types/product.type";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 

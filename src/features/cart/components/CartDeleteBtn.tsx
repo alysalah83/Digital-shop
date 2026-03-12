@@ -1,8 +1,8 @@
 "use client";
 
-import ButtonIcon from "@/components/common/ButtonIcon";
+import ButtonIcon from "@/shared/components/common/ButtonIcon";
 import { deleteFromCart } from "../actions/cart.action";
-import { useCart } from "@/store/cartStore";
+import { useCart } from "@/shared/store/cartStore";
 
 function CartDeleteBtn({ productId }: { productId: number }) {
   const { removeFromCart } = useCart();

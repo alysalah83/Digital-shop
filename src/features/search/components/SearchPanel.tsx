@@ -1,11 +1,11 @@
 "use client";
 
-import { ICONS_MAP } from "@/consts/iconsMap";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import { ProductSummary } from "@/shared/product/types/product.type";
 import { useSearchResults } from "../hooks/useSearchResults";
 import { useState } from "react";
 import ProductSearchCard from "@/shared/product/components/ProductSearchCard";
-import SkeletonLoader from "@/components/ui/SkeletonLoader";
+import SkeletonLoader from "@/shared/components/ui/SkeletonLoader";
 
 interface SearchItemsProps {
   searchResults: ProductSummary[];

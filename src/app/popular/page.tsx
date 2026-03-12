@@ -1,6 +1,6 @@
-import PageHeader from "@/components/layouts/PageHeader";
-import PopularProducts from "@/components/layouts/PopularProducts";
-import { PAGINATION_ITEMS_PER_PAGE } from "@/features/shop/consts/shop.consts";
+import PageHeader from "@/shared/components/layouts/PageHeader";
+import PopularProducts from "@/shared/components/layouts/PopularProducts";
+import { PAGINATION_ITEMS_PER_PAGE } from "@/app/shop/(shop)/_components/shop.consts";
 import prisma from "@/lib/prisma";
 import { cacheLife, cacheTag } from "next/cache";
 

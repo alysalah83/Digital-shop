@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import SearchPanel from "./SearchPanel";
-import { ProductSummary } from "@/shared/product/types/product.type";
-import QueryProvider from "@/contexts/QueryProvider";
+import QueryProvider from "@/shared/providers/QueryProvider";
+import { ProductSummary } from "@/features/product/types/product.type";
 
 function SearchInputLinkWrapper({
   children,

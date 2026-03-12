@@ -1,5 +1,5 @@
-import ToasterConfig from "@/components/layouts/ToasterConfig";
-import Footer from "@/features/footer/components/Footer";
+import ToasterConfig from "@/shared/components/layouts/ToasterConfig";
+import Footer from "@/shared/components/layouts/footer/Footer";
 import Navigation from "@/features/navigation/components/Navigation";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";

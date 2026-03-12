@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { ICONS_MAP } from "@/consts/iconsMap";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";
 import CartSideMenuBtn from "./CartSideMenuBtn";

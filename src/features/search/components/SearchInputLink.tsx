@@ -1,4 +1,4 @@
-import { ICONS_MAP } from "@/consts/iconsMap";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import SearchInputLinkWrapper from "./SearchInputLinkWrapper";
 import prisma from "@/lib/prisma";
 import { cacheLife } from "next/cache";

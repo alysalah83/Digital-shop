@@ -1,7 +1,7 @@
-import Button from "@/components/common/Button";
-import FormInput from "@/components/common/FormInput";
-import PageHeader from "@/components/layouts/PageHeader";
-import { ICONS_MAP } from "@/consts/iconsMap";
+import Button from "@/shared/components/common/Button";
+import FormInput from "@/shared/components/common/FormInput";
+import PageHeader from "@/shared/components/layouts/PageHeader";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 
 export const metadata = {
   title: "Contact",

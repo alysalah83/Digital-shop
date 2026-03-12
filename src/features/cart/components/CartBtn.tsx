@@ -1,8 +1,8 @@
 "use client";
 
-import ButtonIcon from "@/components/common/ButtonIcon";
+import ButtonIcon from "@/shared/components/common/ButtonIcon";
 import { addToCart, deleteFromCart } from "../actions/cart.action";
-import { useCart } from "@/store/cartStore";
+import { useCart } from "@/shared/store/cartStore";
 import { ProductWithDescriptionItem } from "@/shared/product/types/product.type";
 
 function CartBtn({

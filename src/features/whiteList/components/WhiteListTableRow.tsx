@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { WhiteListItem } from "../types/whiteList.type";
 import { whiteListTableRowClasses } from "../styles/whiteList.style";
-import ButtonIcon from "@/components/common/ButtonIcon";
+import ButtonIcon from "@/shared/components/common/ButtonIcon";
 import WhiteListDeleteBtn from "./WhiteListDeleteBtn";
 
 function WhiteListTableRow({ item }: { item: WhiteListItem }) {

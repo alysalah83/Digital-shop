@@ -1,6 +1,6 @@
 import { auth } from "@/auth";
-import EmptyPage from "@/components/common/EmptyPage";
-import PageHeader from "@/components/layouts/PageHeader";
+import EmptyPage from "@/shared/components/common/EmptyPage";
+import PageHeader from "@/shared/components/layouts/PageHeader";
 import WhiteListTable from "@/features/whiteList/components/WhiteListTable";
 import prisma from "@/lib/prisma";
 import { cookies } from "next/headers";

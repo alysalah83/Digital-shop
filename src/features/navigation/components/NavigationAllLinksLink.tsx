@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ALL_LINKS } from "../consts/navigation.consts";
 import { LinkItem } from "../types/navigation.types";
-import { ICONS_MAP } from "@/consts/iconsMap";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 
 interface WindowLinkProps {
   link: LinkItem;

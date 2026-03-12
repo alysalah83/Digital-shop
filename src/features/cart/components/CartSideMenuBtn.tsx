@@ -3,7 +3,7 @@
 import React, { Suspense, useLayoutEffect, useState } from "react";
 import CartSideMenu from "./CartSideMenu";
 import { CartItemSummery } from "../types/cart.types";
-import { useCart } from "@/store/cartStore";
+import { useCart } from "@/shared/store/cartStore";
 
 interface CartSideMenuBtn {
   children: React.ReactNode;

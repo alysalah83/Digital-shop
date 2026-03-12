@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import EmptyPage from "@/components/common/EmptyPage";
+import EmptyPage from "@/shared/components/common/EmptyPage";
 import prisma from "@/lib/prisma";
 import ProductWithActionsCard from "@/shared/product/components/ProductWithActionsCard";
 

@@ -1,6 +1,6 @@
-import PageHeader from "@/components/layouts/PageHeader";
-import SkeletonLoader from "@/components/ui/SkeletonLoader";
-import { PAGINATION_ITEMS_PER_PAGE } from "@/features/shop/consts/shop.consts";
+import PageHeader from "@/shared/components/layouts/PageHeader";
+import SkeletonLoader from "@/shared/components/ui/SkeletonLoader";
+import { PAGINATION_ITEMS_PER_PAGE } from "@/app/shop/(shop)/_components/shop.consts";
 
 function loading() {
   return (

@@ -1,6 +1,6 @@
 "use client";
 
-import ButtonIcon from "@/components/common/ButtonIcon";
+import ButtonIcon from "@/shared/components/common/ButtonIcon";
 import { useState } from "react";
 import { deleteFromWhiteList } from "../actions/whiteList.action";
 

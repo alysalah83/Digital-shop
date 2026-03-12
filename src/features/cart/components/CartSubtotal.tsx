@@ -1,4 +1,4 @@
-import Button from "@/components/common/Button";
+import Button from "@/shared/components/common/Button";
 import { CartItem } from "../types/cart.types";
 
 function CartSubtotal({ items }: { items: CartItem[] }) {

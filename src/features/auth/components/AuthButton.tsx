@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import dummyImgProfile from "@/../public/dummy-profile.png";
-import { ICONS_MAP } from "@/consts/iconsMap";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import { auth } from "@/auth";
 
 async function AuthButton() {

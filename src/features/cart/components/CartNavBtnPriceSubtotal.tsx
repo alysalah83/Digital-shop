@@ -1,6 +1,6 @@
 "use client";
 
-import { useCart } from "@/store/cartStore";
+import { useCart } from "@/shared/store/cartStore";
 
 function CartNavBtnPriceSubtotal({
   initialCartItemsPriceSubtotal,
