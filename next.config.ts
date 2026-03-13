@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
+
   async redirects() {
     return [
       {
@@ -12,6 +13,7 @@ const nextConfig: NextConfig = {
     ];
   },
   cacheComponents: true,
+  reactCompiler: true,
   images: {
     remotePatterns: [
       new URL("https://sgnc93jjcf1xtyta.public.blob.vercel-storage.com/**"),

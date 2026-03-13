@@ -1,29 +1,18 @@
-import PageHeader from "@/components/layouts/PageHeader";
-import SkeletonLoader from "@/components/ui/SkeletonLoader";
-import CartContent from "@/features/cart/components/CartContent";
-import { Suspense } from "react";
+import { auth } from "@/lib/auth";
+import { cookies } from "next/headers";
+import CartPage from "./_components/CartPage";
 
 export const metadata = {
   title: "Cart",
 };
 
-async function CartPage() {
-  return (
-    <>
-      <PageHeader heading="Cart" />
-      <Suspense
-        fallback={
-          <SkeletonLoader
-            rounded="rounded-lg"
-            width="w-full"
-            hight="h-[750px]"
-          />
-        }
-      >
-        <CartContent />
-      </Suspense>
-    </>
-  );
+async function page() {
+  const session = await auth();
+  const userId = session?.user?.id;
+  let guestId: string | undefined;
+  if (!userId) guestId = (await cookies()).get("guestId")?.value;
+
+  return <CartPage userId={userId} guestId={guestId} />;
 }
 
-export default CartPage;
+export default page;

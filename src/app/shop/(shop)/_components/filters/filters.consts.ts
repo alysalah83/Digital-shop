@@ -1,0 +1,3 @@
+const PRICE_RANGER_STEP_SIZE = 50;
+
+export { PRICE_RANGER_STEP_SIZE };

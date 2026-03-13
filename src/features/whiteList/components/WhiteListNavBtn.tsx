@@ -1,4 +1,4 @@
-import { ICONS_MAP } from "@/consts/iconsMap";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import Link from "next/link";
 
 function WhitelistNavBtn() {

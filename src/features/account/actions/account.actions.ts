@@ -1,6 +1,6 @@
 "use server";
 
-import { auth, signOut } from "@/auth";
+import { auth, signOut } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { redirect } from "next/navigation";
@@ -63,7 +63,7 @@ export async function addProduct(
       },
     });
     revalidatePath("/account/mangeProducts");
-    revalidateTag("shopProducts", "max");
+    revalidatePath("/shop");
     return { success: true, message: "Product has been added" };
   } catch (err) {
     console.error(err);

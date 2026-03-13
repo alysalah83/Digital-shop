@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import FormInput from "@/components/ui/FormInput";
-import Button from "@/components/common/Button";
+import FormInput from "@/shared/components/ui/FormInput";
+import Button from "@/shared/components/common/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { updateUser } from "../actions/account.actions";
 import { UserData } from "../types/account.type";
 import { getAddressInformation, getGeoLocation } from "@/lib/api";
-import { ICONS_MAP } from "@/consts/iconsMap";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 
 interface Inputs {
   name: string;

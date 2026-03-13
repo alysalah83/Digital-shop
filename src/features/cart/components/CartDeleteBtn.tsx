@@ -1,11 +1,12 @@
 "use client";
 
-import ButtonIcon from "@/components/common/ButtonIcon";
-import { deleteFromCart } from "../actions/cart.action";
-import { useCart } from "@/store/cartStore";
+import ButtonIcon from "@/shared/components/common/ButtonIcon";
+import { useCart } from "@/shared/store/cartStore";
+import { deleteFromCart } from "../actions/delete-from-cart.action";
+import toast from "react-hot-toast";
 
 function CartDeleteBtn({ productId }: { productId: number }) {
-  const { removeFromCart } = useCart();
+  const removeFromCart = useCart((state) => state.removeFromCart);
   return (
     <ButtonIcon
       btnType="delete"
@@ -13,7 +14,9 @@ function CartDeleteBtn({ productId }: { productId: number }) {
       ariaLabel="remove from cart button"
       onClick={async () => {
         removeFromCart(productId);
-        await deleteFromCart(productId);
+        const response = await deleteFromCart(productId);
+        if (response.status === "success") toast.success(response.message);
+        if (response.status === "error") toast.error(response.error.message);
       }}
     />
   );

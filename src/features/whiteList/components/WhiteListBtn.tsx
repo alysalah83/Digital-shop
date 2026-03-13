@@ -1,8 +1,9 @@
 "use client";
 
-import ButtonIcon from "@/components/common/ButtonIcon";
-import { useOptimistic, useState, useTransition } from "react";
-import { toggleWhiteList } from "../actions/whiteList.action";
+import ButtonIcon from "@/shared/components/common/ButtonIcon";
+import { useOptimistic, useTransition } from "react";
+import { toggleWhiteList } from "../actions/toggle-whitelist.action";
+import toast from "react-hot-toast";
 
 function WhiteListBtn({
   productId,
@@ -19,7 +20,9 @@ function WhiteListBtn({
   const handleToggleWhiteList = () => {
     startTransition(async () => {
       setOptimisticWhiteListed((cur) => !cur);
-      await toggleWhiteList(productId);
+      const response = await toggleWhiteList(productId);
+      if (response.status === "success") toast.success(response.message);
+      if (response.status === "error") toast.success(response.error.message);
     });
   };
 

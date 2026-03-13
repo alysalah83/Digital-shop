@@ -1,10 +1,11 @@
+import "dotenv/config";
 import { list, put } from "@vercel/blob";
 // import { Prisma, PrismaClient } from "@prisma/client";
 // import { category, products } from "./data";
 
 import prisma from "@/lib/prisma";
 import { products } from "./data";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/generated/prisma/client";
 
 // const prisma = new PrismaClient();
 

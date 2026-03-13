@@ -1,10 +1,10 @@
-import Button from "@/components/common/Button";
-import { ICONS_MAP } from "@/consts/iconsMap";
+import Button from "@/shared/components/common/Button";
+import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import Link from "next/link";
 
-import EmptyPage from "@/components/common/EmptyPage";
+import EmptyPage from "@/shared/components/common/EmptyPage";
 import CartSideMenuItem from "./CartSideMenuItem";
-import { useCart } from "@/store/cartStore";
+import { useCart } from "@/shared/store/cartStore";
 
 interface CartSideMenu {
   isMenuOpen: boolean;
@@ -34,8 +34,8 @@ function CartSideMenu({ isMenuOpen, onMenuClose }: CartSideMenu) {
       </div>
       {cartItemsCount > 0 ? (
         <ul className="flex flex-col gap-6 overflow-auto lg:gap-8">
-          {carProductItems?.map((item) => (
-            <CartSideMenuItem product={item} key={item.id} />
+          {carProductItems?.map((product) => (
+            <CartSideMenuItem product={product} key={product.id} />
           ))}
         </ul>
       ) : (

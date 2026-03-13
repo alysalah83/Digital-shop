@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/generated/prisma/client";
 
 type UserData = Prisma.UserGetPayload<{
   select: { name: true; email: true; address: true };

@@ -1,7 +1,7 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/generated/prisma/client";
 
-type WhiteListItem = Prisma.WhiteListItemGetPayload<{
+type WhiteListProductItem = Prisma.WhiteListItemGetPayload<{
   include: { product: true };
 }>;
 
-export type { WhiteListItem };
+export type { WhiteListProductItem };

@@ -1,6 +1,6 @@
 "use client";
 
-import PageHeader from "@/components/layouts/PageHeader";
+import PageHeader from "@/shared/components/layouts/PageHeader";
 import Link from "next/link";
 import { FaArrowLeftLong } from "react-icons/fa6";
 

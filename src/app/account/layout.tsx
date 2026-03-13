@@ -1,4 +1,4 @@
-import PageHeader from "@/components/layouts/PageHeader";
+import PageHeader from "@/shared/components/layouts/PageHeader";
 import AccountSideNav from "@/features/account/components/AccountSideNav";
 import { Suspense } from "react";
 

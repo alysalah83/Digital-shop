@@ -1,13 +1,13 @@
 "use client";
 
-import React, { Suspense, useLayoutEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import CartSideMenu from "./CartSideMenu";
-import { CartItemSummery } from "../types/cart.types";
-import { useCart } from "@/store/cartStore";
+import { useCart } from "@/shared/store/cartStore";
+import { CartProductItem } from "../types/cart.types";
 
 interface CartSideMenuBtn {
   children: React.ReactNode;
-  cartProducts: CartItemSummery[];
+  cartProducts: CartProductItem[];
 }
 
 function CartSideMenuBtn({ children, cartProducts }: CartSideMenuBtn) {
@@ -17,7 +17,6 @@ function CartSideMenuBtn({ children, cartProducts }: CartSideMenuBtn) {
 
   useLayoutEffect(() => {
     const clientCartProducts = cartProducts.map((item) => item.product);
-    console.log(clientCartProducts);
     setCartItems(clientCartProducts);
   }, [cartProducts]);
 
@@ -36,12 +35,10 @@ function CartSideMenuBtn({ children, cartProducts }: CartSideMenuBtn) {
           aria-hidden="true"
         />
       )}
-      <Suspense>
-        <CartSideMenu
-          isMenuOpen={isMenuOpen}
-          onMenuClose={() => setIsMenuOpen(false)}
-        />
-      </Suspense>
+      <CartSideMenu
+        isMenuOpen={isMenuOpen}
+        onMenuClose={() => setIsMenuOpen(false)}
+      />
     </>
   );
 }

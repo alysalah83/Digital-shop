@@ -1,4 +1,4 @@
-import SkeletonLoader from "@/components/ui/SkeletonLoader";
+import SkeletonLoader from "@/shared/components/ui/SkeletonLoader";
 import AccountProducts from "@/features/account/components/AccountProducts";
 import { Suspense } from "react";
 

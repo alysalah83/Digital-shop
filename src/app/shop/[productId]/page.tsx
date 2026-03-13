@@ -1,17 +1,18 @@
-import PageHeader from "@/components/layouts/PageHeader";
-import DetailsTaps from "@/features/Product-details/components/DetailsTaps";
+import PageHeader from "@/shared/components/layouts/PageHeader";
 import prisma from "@/lib/prisma";
-import ProductWithDetails from "@/shared/product/components/ProductWithDetails";
 import { notFound } from "next/navigation";
+import ProductHero from "@/app/shop/[productId]/_components/ProductHero";
+import ProductTabs from "./_components/ProductTabs";
+import { getProductWithReviews } from "@/features/product/queries/product.quries";
 
 export async function generateStaticParams() {
-  const products = await prisma.product.findMany({
+  const productIds = await prisma.product.findMany({
     select: {
       id: true,
     },
   });
 
-  return products.map((product) => ({
+  return productIds.map((product) => ({
     productId: String(product.id),
   }));
 }
@@ -27,14 +28,7 @@ async function ProductPage({
 }) {
   const { productId } = await params;
 
-  const product = await prisma.product.findUnique({
-    where: {
-      id: Number(productId),
-    },
-    include: {
-      reviews: true,
-    },
-  });
+  const product = await getProductWithReviews(Number(productId));
 
   if (!product) return notFound();
 
@@ -42,12 +36,11 @@ async function ProductPage({
     <div>
       <PageHeader heading="product details" />
       <main className="mx-auto max-w-7xl px-6 py-10 md:px-10">
-        {/* <ProductMain productId={productId} /> */}
-        <ProductWithDetails product={product} />
+        <ProductHero product={product} />
       </main>
       <div className="bg-gray-100">
         <section className="mx-auto max-w-7xl px-4 py-10 md:px-10">
-          <DetailsTaps
+          <ProductTabs
             id={product.id}
             reviews={product.reviews}
             description={product.description}
