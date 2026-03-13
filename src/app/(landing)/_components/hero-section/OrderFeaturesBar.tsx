@@ -8,7 +8,7 @@ function OrderFeaturesBar() {
         const { icon, title, label } = feature;
         const Icon = ICONS_MAP[icon];
         return (
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3" key={title}>
             <Icon className="h-10 w-10 self-center fill-slate-950" />
             <div className="flex flex-col gap-1">
               <h3 className="text-lg font-semibold text-slate-950 capitalize">

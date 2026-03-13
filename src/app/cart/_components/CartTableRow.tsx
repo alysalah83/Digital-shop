@@ -1,14 +1,14 @@
 "use client";
 
-import ProductStockCount from "@/shared/product/components/ProductStockCount";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { CartItem } from "../types/cart.types";
-import { TableRowClasses } from "../styles/style";
-import CartDeleteBtn from "./CartDeleteBtn";
+import { TableRowClasses } from "./cart.style";
+import CartDeleteBtn from "../../../features/cart/components/CartDeleteBtn";
+import ProductStockCount from "@/features/product/components/ProductStockCount";
+import { CartProductItem } from "@/features/cart/types/cart.types";
 
-function CartTableRow({ item }: { item: CartItem }) {
+function CartTableRow({ item }: { item: CartProductItem }) {
   const {
     quantity,
     productId,

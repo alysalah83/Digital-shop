@@ -13,6 +13,7 @@ const nextConfig: NextConfig = {
     ];
   },
   cacheComponents: true,
+  reactCompiler: true,
   images: {
     remotePatterns: [
       new URL("https://sgnc93jjcf1xtyta.public.blob.vercel-storage.com/**"),

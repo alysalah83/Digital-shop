@@ -17,7 +17,7 @@ function ProductCard({
 
   const originalPrice = Math.round(price + price * (discountPercentage / 100));
 
-  if (variant === "default")
+  if (variant === "reverse")
     return (
       <div className="group rounded-lg bg-gray-100 p-5 lg:p-6">
         <RatingStars currentRating={rating} />
@@ -46,7 +46,7 @@ function ProductCard({
         </div>
       </div>
     );
-  else if (variant === "reverse")
+  else if (variant === "default")
     return (
       <div className="group">
         <div className="peer relative mb-6 h-64 w-full overflow-hidden rounded-lg bg-gray-100 hover:cursor-pointer">

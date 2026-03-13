@@ -1,32 +1,29 @@
 "use client";
 
+import { Product } from "@/features/product/types/product.type";
 import ButtonIcon from "@/shared/components/common/ButtonIcon";
-import { addToCart, deleteFromCart } from "../actions/cart.action";
 import { useCart } from "@/shared/store/cartStore";
-import { ProductWithDescriptionItem } from "@/shared/product/types/product.type";
+import { deleteFromCart } from "../actions/delete-from-cart.action";
+import { addToCart } from "../actions/add-to-cart.action";
+import toast from "react-hot-toast";
 
-function CartBtn({
-  productId,
-  productSummery,
-}: {
-  productId: number;
-  productSummery: ProductWithDescriptionItem;
-}) {
-  const {
-    isProductInCart,
-    addToCart: addToCartState,
-    removeFromCart,
-  } = useCart();
-
-  const isProductInCartState = isProductInCart(productId);
+function CartBtn({ product }: { product: Product }) {
+  const { id } = product;
+  const isProductInCart = useCart((state) => state.isProductInCart(id));
+  const addToCartState = useCart((state) => state.addToCart);
+  const removeFromCart = useCart((state) => state.removeFromCart);
 
   const handleClick = async () => {
-    if (isProductInCartState) {
-      removeFromCart(productId);
-      await deleteFromCart(productId);
+    if (isProductInCart) {
+      removeFromCart(id);
+      const response = await deleteFromCart(id);
+      if (response.status === "success") toast.success(response.message);
+      if (response.status === "error") toast.success(response.error.message);
     } else {
-      addToCartState({ id: productId, ...productSummery });
-      await addToCart(productId);
+      addToCartState(product);
+      const response = await addToCart(id);
+      if (response.status === "success") toast.success(response.message);
+      if (response.status === "error") toast.success(response.error.message);
     }
   };
 
@@ -36,7 +33,7 @@ function CartBtn({
       size="medium"
       rounded="rounded-full"
       ariaLabel="add to cart button"
-      isActive={isProductInCartState}
+      isActive={isProductInCart}
       onClick={handleClick}
     />
   );

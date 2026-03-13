@@ -1,10 +1,10 @@
-import { CartProduct } from "@/features/cart/types/cart.types";
+import { Product } from "@/features/product/types/product.type";
 import { create } from "zustand";
 
 interface CartStore {
-  carProductItems: CartProduct[];
-  setCartItems: (products: CartProduct[]) => void;
-  addToCart: (product: CartProduct) => void;
+  carProductItems: Product[];
+  setCartItems: (products: Product[]) => void;
+  addToCart: (product: Product) => void;
   removeFromCart: (productId: number) => void;
   isProductInCart: (productId: number) => boolean;
   cartProductsSubtotal: () => number;

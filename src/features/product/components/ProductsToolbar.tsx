@@ -5,15 +5,15 @@ import ButtonIcon from "@/shared/components/common/ButtonIcon";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import ProductsSortBy from "@/features/product/components/ProductsSortBy";
 
-import { LayoutShape } from "@/app/shop/(shop)/_components/shop.types";
 import {
   PRODUCTS_LAYOUT_SHAPE_PARAM_KEY,
   PRODUCTS_LAYOUT_SHAPES,
 } from "../consts/product.consts";
+import { ProductsLayoutShape } from "../types/product.type";
 
 interface ShopHeaderProps {
   productsTotalCount: number;
-  initLayoutShape: LayoutShape;
+  initLayoutShape: ProductsLayoutShape;
   productsPerPage: number;
 }
 
@@ -28,7 +28,7 @@ function ProductsToolbar({
   const paramKey = PRODUCTS_LAYOUT_SHAPE_PARAM_KEY;
   const curLayoutShape = searchparams.get(paramKey) || initLayoutShape;
 
-  const handleLayoutShapeChange = (newLayoutShape: LayoutShape) => {
+  const handleLayoutShapeChange = (newLayoutShape: ProductsLayoutShape) => {
     const params = new URLSearchParams(searchparams);
 
     const isParamExist = params.has(paramKey);

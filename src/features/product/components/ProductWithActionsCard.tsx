@@ -1,16 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FaRegEdit } from "react-icons/fa";
-import { ProductSummary } from "../types/product.type";
 import RatingStars from "@/shared/components/ui/RatingStars";
-import ButtonIcon from "@/shared/components/common/ButtonIcon";
 import AccountDeleteProductBtn from "@/features/account/components/AccountDeleteProductBtn";
+import { Product } from "../types/product.type";
 
-function ProductWithActionsCard({
-  productItem,
-}: {
-  productItem: ProductSummary;
-}) {
+function ProductWithActionsCard({ productItem }: { productItem: Product }) {
   const { id, image, name, price, rating, brand } = productItem;
 
   return (

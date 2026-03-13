@@ -17,15 +17,6 @@ export async function GET(request: NextRequest) {
       orderBy: {
         createdAt: "desc",
       },
-      select: {
-        id: true,
-        price: true,
-        brand: true,
-        discountPercentage: true,
-        image: true,
-        name: true,
-        rating: true,
-      },
     });
 
     return NextResponse.json(searchResults);

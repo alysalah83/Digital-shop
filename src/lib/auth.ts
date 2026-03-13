@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
-import type { PrismaClient as AdapterPrismaClient } from "@prisma/client";
+import type { PrismaClient as AdapterPrismaClient } from "@/generated/prisma/client";
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
 import prisma from "./prisma";

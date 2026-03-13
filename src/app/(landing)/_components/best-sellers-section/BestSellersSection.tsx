@@ -1,6 +1,3 @@
-"use cache";
-cacheLife("max");
-
 import Link from "next/link";
 import LandingSectionHeader from "@/app/(landing)/_components/shared/LandingSectionHeader";
 import Button from "@/shared/components/common/Button";
@@ -9,13 +6,20 @@ import { getProducts } from "@/features/product/queries/products.queries";
 import { BEST_SELLERS_PRODUCTS_COUNT } from "./best-sellers.consts";
 import ProductCard from "@/features/product/components/ProductCard";
 
-async function BestSellersSection() {
-  const products = await getProducts({
+async function getBestSellersProducts() {
+  "use cache";
+  cacheLife("max");
+
+  return await getProducts({
     orderBy: {
       rating: "desc",
     },
     take: BEST_SELLERS_PRODUCTS_COUNT,
   });
+}
+
+async function BestSellersSection() {
+  const products = await getBestSellersProducts();
 
   return (
     <section>

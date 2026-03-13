@@ -1,10 +1,6 @@
-"use cache";
-cacheLife("max");
-
 import PageHeader from "@/shared/components/layouts/PageHeader";
 import prisma from "@/lib/prisma";
 import { notFound } from "next/navigation";
-import { cacheLife } from "next/cache";
 import ProductHero from "@/app/shop/[productId]/_components/ProductHero";
 import ProductTabs from "./_components/ProductTabs";
 import { getProductWithReviews } from "@/features/product/queries/product.quries";

@@ -3,13 +3,13 @@
 import { useState } from "react";
 import SearchPanel from "./SearchPanel";
 import QueryProvider from "@/shared/providers/QueryProvider";
-import { ProductSummary } from "@/features/product/types/product.type";
+import { Product } from "@/features/product/types/product.type";
 
 function SearchInputLinkWrapper({
   children,
   initSearchResults,
 }: Readonly<{ children: React.ReactNode }> & {
-  initSearchResults: ProductSummary[];
+  initSearchResults: Product[];
 }) {
   const [isSearchPanelOpened, setIsSearchPanelOpened] = useState(false);
 

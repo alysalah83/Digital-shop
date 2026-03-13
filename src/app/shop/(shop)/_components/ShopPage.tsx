@@ -1,17 +1,17 @@
-import { ShopSearchParams } from "./shop.types";
 import EmptyPage from "@/shared/components/common/EmptyPage";
 import PageHeader from "@/shared/components/layouts/PageHeader";
 import ShopLayout from "./ShopLayout";
 import { cacheLife } from "next/cache";
 import {
   getFilteredProducts,
-  getProductsCount,
+  getFilteredProductsCount,
   getProductsMinMaxPrice,
 } from "@/features/product/queries/products.queries";
 import ClearFilters from "@/app/shop/(shop)/_components/filters/ClearFilters";
 import SideBarCategoriesFilter from "@/app/shop/(shop)/_components/filters/SideBarCategoriesFilter";
-import PriceRanger from "@/app/shop/(shop)/_components/filters/PriceRanger";
 import { getCategoriesWithProductsCount } from "@/features/category/queries/categories.queries";
+import SideBarPriceRanger from "./filters/SideBarPriceRanger";
+import { ShopSearchParams } from "./filters/filters.types";
 
 async function ShopPage({ searchParams }: { searchParams: ShopSearchParams }) {
   "use cache";
@@ -24,7 +24,7 @@ async function ShopPage({ searchParams }: { searchParams: ShopSearchParams }) {
     productMinMaxPrice,
   ] = await Promise.all([
     getFilteredProducts(searchParams),
-    getProductsCount(searchParams),
+    getFilteredProductsCount(searchParams),
     getCategoriesWithProductsCount(),
     getProductsMinMaxPrice(),
   ]);
@@ -36,7 +36,7 @@ async function ShopPage({ searchParams }: { searchParams: ShopSearchParams }) {
         <aside className="flex flex-col gap-9 lg:min-w-2xs">
           <ClearFilters />
           <SideBarCategoriesFilter categories={categoriesWithProductsCount} />
-          <PriceRanger productMinMaxPrice={productMinMaxPrice} />
+          <SideBarPriceRanger productMinMaxPrice={productMinMaxPrice} />
         </aside>
 
         {products.length === 0 ? (

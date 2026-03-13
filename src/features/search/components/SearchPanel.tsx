@@ -1,22 +1,18 @@
 "use client";
 
 import { ICONS_MAP } from "@/shared/icons/iconsMap";
-import { ProductSummary } from "@/shared/product/types/product.type";
 import { useSearchResults } from "../hooks/useSearchResults";
 import { useState } from "react";
-import ProductSearchCard from "@/shared/product/components/ProductSearchCard";
 import SkeletonLoader from "@/shared/components/ui/SkeletonLoader";
+import { Product } from "@/features/product/types/product.type";
+import ProductSearchItem from "@/features/product/components/ProductSearchCard";
 
 interface SearchItemsProps {
-  searchResults: ProductSummary[];
+  searchResults: Product[];
   searchQuery: string;
 }
 
-function SearchPanel({
-  initSearchResults,
-}: {
-  initSearchResults: ProductSummary[];
-}) {
+function SearchPanel({ initSearchResults }: { initSearchResults: Product[] }) {
   const [searchQuery, setSearchQuery] = useState("");
   const { searchProducts, isPending } = useSearchResults(
     searchQuery,
@@ -64,8 +60,8 @@ function SearchPanel({
 function SearchItems({ searchResults, searchQuery }: SearchItemsProps) {
   return searchResults?.length > 0 ? (
     searchResults.map((item) => (
-      <ProductSearchCard
-        productItem={item}
+      <ProductSearchItem
+        product={item}
         searchQuery={searchQuery}
         key={item.id}
       />

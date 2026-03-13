@@ -1,6 +1,3 @@
-"use cache";
-cacheLife("max");
-
 import Button from "@/shared/components/common/Button";
 import { cacheLife } from "next/cache";
 import { getProducts } from "@/features/product/queries/products.queries";
@@ -11,6 +8,9 @@ import {
 import ProductColoredCard from "@/app/(landing)/_components/best-offer-section/ProductColoredCard";
 
 async function BestOffersSection() {
+  "use cache";
+  cacheLife("max");
+
   const products = await getProducts({
     orderBy: {
       discountPercentage: "desc",

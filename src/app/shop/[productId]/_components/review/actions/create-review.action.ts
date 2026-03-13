@@ -3,7 +3,7 @@
 import prisma from "@/lib/prisma";
 import { CreateReviewSchema } from "../validators/review.schema";
 import { revalidatePath } from "next/cache";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/generated/prisma/client";
 import z from "zod";
 import { CreateReviewInputs } from "../types/review.types";
 

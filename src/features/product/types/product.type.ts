@@ -1,4 +1,4 @@
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/generated/prisma/client";
 
 type Product = Prisma.ProductGetPayload<object>;
 
@@ -8,4 +8,6 @@ type ProductWithReviews = Prisma.ProductGetPayload<{
 
 type SortOrder = "asc" | "desc";
 
-export type { Product, ProductWithReviews, SortOrder };
+type ProductsLayoutShape = "verticalCard" | "horizontalCard";
+
+export type { Product, ProductWithReviews, SortOrder, ProductsLayoutShape };

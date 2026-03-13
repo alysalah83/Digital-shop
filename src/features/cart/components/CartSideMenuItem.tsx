@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { CartProduct } from "../types/cart.types";
 import CartDeleteBtn from "./CartDeleteBtn";
+import { Product } from "@/features/product/types/product.type";
 
 interface CartSideMenuItem {
-  product: CartProduct;
+  product: Product;
 }
 
 function CartSideMenuItem({ product }: CartSideMenuItem) {

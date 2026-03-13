@@ -1,13 +1,10 @@
 "use client";
 
 import { SEARCH_CACHE_TIME } from "@/app/shop/(shop)/_components/shop.consts";
-import { ProductSummary } from "@/shared/product/types/product.type";
+import { Product } from "@/features/product/types/product.type";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
-export function useSearchResults(
-  query: string,
-  initSearchResults: ProductSummary[],
-) {
+export function useSearchResults(query: string, initSearchResults: Product[]) {
   const { data, error, isPending } = useQuery({
     queryFn: async () => {
       const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);

@@ -1,75 +1,18 @@
-import { auth } from "@/auth";
-import EmptyPage from "@/shared/components/common/EmptyPage";
-import PageHeader from "@/shared/components/layouts/PageHeader";
-import WhiteListTable from "@/features/whiteList/components/WhiteListTable";
-import prisma from "@/lib/prisma";
+import { auth } from "@/lib/auth";
 import { cookies } from "next/headers";
+import WhitelistPage from "./_components/WhitelistPage";
 
 export const metadata = {
   title: "Whitelist",
 };
 
-async function CartPage() {
+async function page() {
   const session = await auth();
   const userId = session?.user?.id;
+  let guestId: string | undefined;
+  if (guestId) guestId = (await cookies()).get("guestId")?.value;
 
-  let whiteListItems;
-  if (userId)
-    whiteListItems = await prisma.whiteListItem.findMany({
-      where: {
-        userId,
-      },
-      include: { product: true },
-    });
-  else {
-    const cookieStore = await cookies();
-    let guestId = cookieStore.get("guestId")?.value;
-
-    if (!guestId) {
-      guestId = crypto.randomUUID();
-      cookieStore.set("guestId", guestId, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 60 * 60 * 24 * 30, // 30 days
-      });
-    }
-    whiteListItems = await prisma.whiteListItem.findMany({
-      where: {
-        guestId,
-      },
-      include: { product: true },
-    });
-  }
-
-  const whiteListItemsCount = whiteListItems.length;
-
-  return (
-    <>
-      <PageHeader heading="WhiteList" />
-      <main
-        className={`${whiteListItemsCount > 0 ? "bg-gray-300" : "bg-white"}`}
-      >
-        <section className="mx-auto max-w-7xl px-6 py-10 md:px-10">
-          {whiteListItemsCount > 0 ? (
-            <>
-              <div className="overflow-x-auto rounded-lg bg-white px-8 py-5 shadow-md">
-                <WhiteListTable whiteListItems={whiteListItems} />
-              </div>
-              {/* <CartOrderSummery
-              items={products}
-              itemsBalance={totalPrice}
-              getItemCount={getItemCount}
-            /> */}
-            </>
-          ) : (
-            <div className="flex w-full justify-center">
-              <EmptyPage label="your whiteList is empty!" icon="heart" />
-            </div>
-          )}
-        </section>
-      </main>
-    </>
-  );
+  return <WhitelistPage userId={userId} guestId={guestId} />;
 }
 
-export default CartPage;
+export default page;

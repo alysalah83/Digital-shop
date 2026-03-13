@@ -1,8 +1,11 @@
+import { CartProductItem } from "@/features/cart/types/cart.types";
 import Button from "@/shared/components/common/Button";
-import { CartItem } from "../types/cart.types";
 
-function CartSubtotal({ items }: { items: CartItem[] }) {
-  const itemsBalance = items.reduce((sum, item) => sum + item.product.price, 0);
+function CartSubtotal({ cartProducts }: { cartProducts: CartProductItem[] }) {
+  const itemsBalance = cartProducts.reduce(
+    (sum, item) => sum + item.product.price,
+    0,
+  );
 
   return (
     <div className="mt-10 flex w-fit flex-col rounded-lg bg-white">
@@ -15,7 +18,7 @@ function CartSubtotal({ items }: { items: CartItem[] }) {
           <span>Subtotal</span>
         </div>
         <ul className="text-gray-500">
-          {items.map((item) => (
+          {cartProducts.map((item) => (
             <CardOrderItem item={item} key={item.id} />
           ))}
           <li className="mb-3 flex justify-between py-5 text-xl font-bold text-gray-700 lg:font-black">
@@ -29,7 +32,7 @@ function CartSubtotal({ items }: { items: CartItem[] }) {
   );
 }
 
-function CardOrderItem({ item }: { item: CartItem }) {
+function CardOrderItem({ item }: { item: CartProductItem }) {
   const {
     product: { name, price },
   } = item;

@@ -1,8 +1,8 @@
 import PageHeader from "@/shared/components/layouts/PageHeader";
-import Logo from "@/features/navigation/components/Logo";
+import Logo from "@/shared/components/layouts/navigation/components/Logo";
 import googleLogo from "@/../public/Logo-google-icon-PNG.png";
 import Image from "next/image";
-import { signIn } from "@/auth";
+import { signIn } from "@/lib/auth";
 
 export const metadata = {
   title: "login",

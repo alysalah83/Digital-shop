@@ -1,15 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import { WhiteListItem } from "../types/whiteList.type";
-import { whiteListTableRowClasses } from "../styles/whiteList.style";
-import ButtonIcon from "@/shared/components/common/ButtonIcon";
-import WhiteListDeleteBtn from "./WhiteListDeleteBtn";
+import { Product } from "@/features/product/types/product.type";
+import { whiteListTableRowClasses } from "./whiteList.style";
+import WhiteListDeleteBtn from "@/features/whiteList/components/WhiteListDeleteBtn";
 
-function WhiteListTableRow({ item }: { item: WhiteListItem }) {
-  const {
-    productId,
-    product: { image, name, price, stock },
-  } = item;
+function WhiteListTableRow({ product }: { product: Product }) {
+  const { id, image, name, price, stock } = product;
   const priceClasses = "self-center font-semibold tracking-wide text-lg";
 
   const inStock = stock > 0;
@@ -28,7 +24,7 @@ function WhiteListTableRow({ item }: { item: WhiteListItem }) {
           </div>
         </div>
         <span className="pr-2 text-lg font-medium text-wrap transition duration-300 hover:text-blue-600 lg:font-bold">
-          <Link href={`/shop/${productId}`}>{name}</Link>
+          <Link href={`/shop/${id}`}>{name}</Link>
         </span>
       </div>
       <div className={priceClasses}>${price}</div>
@@ -38,7 +34,7 @@ function WhiteListTableRow({ item }: { item: WhiteListItem }) {
         </span>
       </div>
       <div className="self-center">
-        <WhiteListDeleteBtn productId={productId} />
+        <WhiteListDeleteBtn productId={id} />
       </div>
     </div>
   );

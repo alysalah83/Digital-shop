@@ -1,20 +1,30 @@
 import prisma from "@/lib/prisma";
-import { Prisma } from "../../../../lib/generated/prisma/client";
-import { ShopSearchParams } from "@/app/shop/(shop)/_components/shop.types";
 import { PAGINATION_ITEMS_PER_PAGE } from "@/app/shop/(shop)/_components/shop.consts";
+import { Prisma } from "@/generated/prisma/client";
+import { ShopSearchParams } from "@/app/shop/(shop)/_components/filters/filters.types";
 
 export async function getProducts({
+  where,
   orderBy,
   take,
+  skip,
 }: {
+  where?: Prisma.ProductWhereInput;
   orderBy?: Prisma.ProductOrderByWithRelationInput;
   take?: number;
+  skip?: number;
 }) {
   const products = await prisma.product.findMany({
+    ...(where && { where }),
     ...(orderBy && { orderBy }),
     ...(take && { take }),
+    ...(skip && { skip }),
   });
   return products;
+}
+
+export async function getProductsCount() {
+  return await prisma.product.count();
 }
 
 export async function getProductsWithReviews({
@@ -74,7 +84,7 @@ export async function getFilteredProducts({
   return products;
 }
 
-export async function getProductsCount({
+export async function getFilteredProductsCount({
   category,
   min,
   max,

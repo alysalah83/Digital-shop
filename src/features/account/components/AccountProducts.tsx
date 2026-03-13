@@ -1,7 +1,7 @@
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 import EmptyPage from "@/shared/components/common/EmptyPage";
 import prisma from "@/lib/prisma";
-import ProductWithActionsCard from "@/shared/product/components/ProductWithActionsCard";
+import ProductWithActionsCard from "@/features/product/components/ProductWithActionsCard";
 
 async function AccountProducts() {
   const session = await auth();

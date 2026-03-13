@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import dummyImgProfile from "@/../public/dummy-profile.png";
 import { ICONS_MAP } from "@/shared/icons/iconsMap";
-import { auth } from "@/auth";
+import { auth } from "@/lib/auth";
 
 async function AuthButton() {
   const session = await auth();

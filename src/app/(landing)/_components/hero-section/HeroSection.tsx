@@ -1,6 +1,3 @@
-"use cache";
-cacheLife("max");
-
 import ProductSlider from "./HeroProductsSlider";
 import OrderFeaturesBar from "./OrderFeaturesBar";
 import { getProducts } from "@/features/product/queries/products.queries";
@@ -13,6 +10,9 @@ import {
 } from "./hero.consts";
 
 async function HeroSection() {
+  "use cache";
+  cacheLife("max");
+
   const products = await getProducts({
     orderBy: { discountPercentage: "desc" },
     take: HERO_SLIDER_CARDS_COUNT + HERO_DISCOUNT_CARDS_COUNT,

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { SelectFilterValue } from "../../../app/shop/(shop)/_components/filters/filters.types";
+// import { SelectFilterValue } from "../../../app/shop/(shop)/_components/filters/filters.types";
 import { PRODUCTS_SORTBY_OPTIONS } from "../consts/product.consts";
 
 function ProductsSortBy() {
@@ -9,7 +9,7 @@ function ProductsSortBy() {
   const pathname = usePathname();
   const { push } = useRouter();
 
-  const handleSortByChange = (newFilter: SelectFilterValue | "none") => {
+  const handleSortByChange = (newFilter: any | "none") => {
     const params = new URLSearchParams(searchParams);
     if (newFilter === "none") params.delete("sortBy");
     else {
@@ -23,9 +23,7 @@ function ProductsSortBy() {
     <select
       title="price direction selector"
       defaultValue={searchParams.get("sortBy") || "none"}
-      onChange={(e) =>
-        handleSortByChange(e.target.value as SelectFilterValue | "none")
-      }
+      onChange={(e) => handleSortByChange(e.target.value as any | "none")}
       className="rounded-md border border-gray-300 px-2.5 py-1.5 focus:border-blue-500 focus:outline-none"
     >
       <option value={"none"}>Select Order</option>

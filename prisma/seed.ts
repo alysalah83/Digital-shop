@@ -5,7 +5,7 @@ import { list, put } from "@vercel/blob";
 
 import prisma from "@/lib/prisma";
 import { products } from "./data";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/generated/prisma/client";
 
 // const prisma = new PrismaClient();
 

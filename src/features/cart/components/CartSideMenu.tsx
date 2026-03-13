@@ -34,8 +34,8 @@ function CartSideMenu({ isMenuOpen, onMenuClose }: CartSideMenu) {
       </div>
       {cartItemsCount > 0 ? (
         <ul className="flex flex-col gap-6 overflow-auto lg:gap-8">
-          {carProductItems?.map((item) => (
-            <CartSideMenuItem product={item} key={item.id} />
+          {carProductItems?.map((product) => (
+            <CartSideMenuItem product={product} key={product.id} />
           ))}
         </ul>
       ) : (

@@ -1,11 +1,11 @@
+import { WhiteListProductItem } from "../../../features/whiteList/types/whiteList.type";
+import { whiteListTableRowClasses } from "./whiteList.style";
 import WhiteListTableRow from "./WhiteListTableRow";
-import { WhiteListItem } from "../types/whiteList.type";
-import { whiteListTableRowClasses } from "../styles/whiteList.style";
 
 function WhiteListTable({
-  whiteListItems,
+  whitelistProducts,
 }: {
-  whiteListItems: WhiteListItem[];
+  whitelistProducts: WhiteListProductItem[];
 }) {
   return (
     <>
@@ -17,8 +17,8 @@ function WhiteListTable({
         <div>Stock Status</div>
         <div>Delete</div>
       </header>
-      {whiteListItems.map((item) => (
-        <WhiteListTableRow item={item} key={item.productId} />
+      {whitelistProducts.map((item) => (
+        <WhiteListTableRow product={item.product} key={item.productId} />
       ))}
     </>
   );

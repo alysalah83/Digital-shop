@@ -1,6 +1,3 @@
-"use cache";
-cacheLife("max");
-
 import Button from "@/shared/components/common/Button";
 import LandingSectionHeader from "@/app/(landing)/_components/shared/LandingSectionHeader";
 import Link from "next/link";
@@ -9,11 +6,18 @@ import { LATEST_SECTION_PRODUCTS_COUNT } from "./latestProduct.consts";
 import ProductCard from "@/features/product/components/ProductCard";
 import { cacheLife } from "next/cache";
 
-async function LatestProductSection() {
-  const products = await getProducts({
+async function getLatestProducts() {
+  "use cache";
+  cacheLife("max");
+
+  return await getProducts({
     orderBy: { createdAt: "desc" },
     take: LATEST_SECTION_PRODUCTS_COUNT,
   });
+}
+
+async function LatestProductSection() {
+  const products = await getLatestProducts();
 
   return (
     <section>

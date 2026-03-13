@@ -1,6 +1,3 @@
-"use cache";
-cacheLife("max");
-
 import LandingSectionHeader from "@/app/(landing)/_components/shared/LandingSectionHeader";
 import {
   ScrollSlider,
@@ -12,6 +9,9 @@ import { cacheLife } from "next/cache";
 import { getCategories } from "@/features/category/queries/categories.queries";
 
 async function CategoriesSection() {
+  "use cache";
+  cacheLife("max");
+
   const categories = await getCategories();
 
   return (

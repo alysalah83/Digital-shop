@@ -1,8 +1,8 @@
-import { TableRowClasses } from "../styles/style";
-import { CartItem } from "../types/cart.types";
+import { CartProductItem } from "@/features/cart/types/cart.types";
 import CartTableRow from "./CartTableRow";
+import { TableRowClasses } from "./cart.style";
 
-function CartTable({ cartItems }: { cartItems: CartItem[] }) {
+function CartTable({ cartProducts }: { cartProducts: CartProductItem[] }) {
   return (
     <>
       <header
@@ -14,7 +14,7 @@ function CartTable({ cartItems }: { cartItems: CartItem[] }) {
         <div>Subtotal</div>
         <div>Delete</div>
       </header>
-      {cartItems.map((item) => (
+      {cartProducts.map((item) => (
         <CartTableRow item={item} key={item.productId} />
       ))}
     </>

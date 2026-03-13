@@ -1,4 +1,4 @@
-import { ShopSearchParams } from "./_components/shop.types";
+import { ShopSearchParams } from "./_components/filters/filters.types";
 import ShopPage from "./_components/ShopPage";
 
 export const metadata = {

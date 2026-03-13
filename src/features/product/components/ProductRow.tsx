@@ -2,7 +2,9 @@ import RatingStars from "@/shared/components/ui/RatingStars";
 import Image from "next/image";
 import Link from "next/link";
 import { Product } from "../types/product.type";
-import ProductFeaturesBar from "./ProductFeaturesBar";
+// import ProductFeaturesBar from "./ProductFeaturesBar";
+import { Suspense } from "react";
+import ProductFeaturesBarSkeleton from "./ProductFeaturesBarSkeleton";
 
 function ProductRow({ product }: { product: Product }) {
   const { id, image, name, price, rating, discountPercentage } = product;
@@ -22,7 +24,9 @@ function ProductRow({ product }: { product: Product }) {
               />
             </div>
           </Link>
-          <ProductFeaturesBar product={product} />
+          {/* <Suspense fallback={<ProductFeaturesBarSkeleton />}>
+            <ProductFeaturesBar product={product} />
+          </Suspense> */}
         </div>
       </div>
 

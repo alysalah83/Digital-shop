@@ -1,25 +1,14 @@
 import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import SearchInputLinkWrapper from "./SearchInputLinkWrapper";
-import prisma from "@/lib/prisma";
 import { cacheLife } from "next/cache";
+import { getProducts } from "@/features/product/queries/products.queries";
 
 async function SearchInputLink() {
   "use cache";
   cacheLife("days");
 
-  const initSearchResults = await prisma.product.findMany({
-    orderBy: {
-      createdAt: "asc",
-    },
-    select: {
-      id: true,
-      price: true,
-      brand: true,
-      discountPercentage: true,
-      image: true,
-      name: true,
-      rating: true,
-    },
+  const initSearchResults = await getProducts({
+    orderBy: { createdAt: "asc" },
     take: 10,
   });
 

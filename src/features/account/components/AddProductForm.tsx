@@ -4,7 +4,7 @@ import { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import toast from "react-hot-toast";
 import Image from "next/image";
-import { Prisma } from "@prisma/client";
+import { Prisma } from "@/generated/prisma/client";
 import FormInput from "@/shared/components/ui/FormInput";
 import Button from "@/shared/components/common/Button";
 import { useForm, UseFormRegisterReturn } from "react-hook-form";

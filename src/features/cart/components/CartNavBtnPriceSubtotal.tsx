@@ -7,18 +7,17 @@ function CartNavBtnPriceSubtotal({
 }: {
   initialCartItemsPriceSubtotal: number;
 }) {
-  const { cartProductsSubtotal } = useCart();
+  const cartProductsSubtotal = useCart((state) => state.cartProductsSubtotal());
 
   const isInit =
-    initialCartItemsPriceSubtotal !== 0 && cartProductsSubtotal() === 0;
+    initialCartItemsPriceSubtotal !== 0 && cartProductsSubtotal === 0;
 
   return (
     <p className="text-sm font-semibold capitalize">
       $
-      {(isInit
-        ? initialCartItemsPriceSubtotal
-        : cartProductsSubtotal()
-      ).toFixed(2)}
+      {(isInit ? initialCartItemsPriceSubtotal : cartProductsSubtotal).toFixed(
+        2,
+      )}
     </p>
   );
 }
