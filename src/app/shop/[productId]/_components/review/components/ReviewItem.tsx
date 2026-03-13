@@ -7,7 +7,7 @@ import dummyProfileImg from "@/../public/dummy-profile.png";
 function ReviewItem({ review }: { review: Review }) {
   const { rating, comment, reviewerName, createdAt } = review;
 
-  const formatCreatedAt = format(new Date(createdAt), "MMM EEEE d, yyyy");
+  const formatCreatedAt = format(createdAt, "MMM EEEE d, yyyy");
 
   return (
     <div className="rounded-lg bg-white p-4 md:p-6">

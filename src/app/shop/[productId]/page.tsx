@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import ProductHero from "@/app/shop/[productId]/_components/ProductHero";
 import ProductTabs from "./_components/ProductTabs";
 import { getProductWithReviews } from "@/features/product/queries/product.quries";
+import { cacheLife } from "next/cache";
 
 export async function generateStaticParams() {
   const productIds = await prisma.product.findMany({
@@ -26,6 +27,8 @@ async function ProductPage({
 }: {
   params: Promise<{ productId: string }>;
 }) {
+  "use cache";
+  cacheLife("max");
   const { productId } = await params;
 
   const product = await getProductWithReviews(Number(productId));

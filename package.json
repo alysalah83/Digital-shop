@@ -4,12 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "postinstall": "prisma generate --no-engine",
+    "postinstall": "prisma generate",
     "generate": "prisma generate",
     "migrate": "prisma migrate dev",
     "db:test": "tsx scripts/test-database.ts",
     "db:studio": "prisma studio",
-    "build": "next build --turbopack",
+    "build": "prisma generate && next build --turbopack",
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
