@@ -163,6 +163,7 @@ model WhiteListItem {
   product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
 
   @@unique([userId, productId])
+  @@unique([guestId, productId])
   @@index([userId])
   @@index([productId])
   @@index([userId, createdAt])

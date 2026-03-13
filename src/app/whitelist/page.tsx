@@ -10,7 +10,7 @@ async function page() {
   const session = await auth();
   const userId = session?.user?.id;
   let guestId: string | undefined;
-  if (guestId) guestId = (await cookies()).get("guestId")?.value;
+  if (!userId) guestId = (await cookies()).get("guestId")?.value;
 
   return <WhitelistPage userId={userId} guestId={guestId} />;
 }

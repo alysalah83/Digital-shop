@@ -16,12 +16,11 @@ export async function toggleWhiteList(
     let guestId = (await cookies()).get("guestId")?.value;
     if (!userId && !guestId) guestId = await createGuest();
 
-    const ownField = userId ? { userId } : { guestId };
-
     const whitelistItem = await prisma.whiteListItem.findFirst({
       where: {
         productId,
-        ...ownField,
+        ...(userId && { userId }),
+        ...(guestId && { guestId }),
       },
     });
 
@@ -29,23 +28,25 @@ export async function toggleWhiteList(
       await prisma.whiteListItem.deleteMany({
         where: {
           productId,
-          ...ownField,
+          ...(userId && { userId }),
+          ...(guestId && { guestId }),
         },
       });
     else if (!whitelistItem)
       await prisma.whiteListItem.create({
         data: {
           productId,
-          ...ownField,
+          ...(userId && { userId }),
+          ...(guestId && { guestId }),
         },
       });
-
     updateTag(`whitelist-${userId || guestId}`);
     return {
       status: "success",
       message: `Whitelist product has been ${whitelistItem ? "removed" : "added"}`,
     };
   } catch (error) {
-    throw new Error("Something went wrong");
+    console.log(error);
+    return { status: "error", error: { message: "" } };
   }
 }
