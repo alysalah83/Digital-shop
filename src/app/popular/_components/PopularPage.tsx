@@ -8,17 +8,11 @@ import PopularProducts from "@/app/popular/_components/PopularProducts";
 import { cacheLife } from "next/cache";
 import { PAGINATION_ITEMS_PER_PAGE } from "./popular.consts";
 
-async function PopularPage({
-  page,
-  layoutShape,
-}: {
-  page: number;
-  layoutShape?: ProductsLayoutShape;
-}) {
+async function getPopularData(page: number) {
   "use cache";
   cacheLife("max");
 
-  const [products, productsCount] = await Promise.all([
+  return await Promise.all([
     getProducts({
       where: { rating: { gte: 4 } },
       take: PAGINATION_ITEMS_PER_PAGE,
@@ -26,6 +20,16 @@ async function PopularPage({
     }),
     getProductsCount(),
   ]);
+}
+
+async function PopularPage({
+  page,
+  layoutShape,
+}: {
+  page: number;
+  layoutShape?: ProductsLayoutShape;
+}) {
+  const [products, productsCount] = await getPopularData(page);
 
   return (
     <div className="bg-slate-200">
