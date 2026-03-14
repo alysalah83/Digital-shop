@@ -13,21 +13,25 @@ import { getCategoriesWithProductsCount } from "@/features/category/queries/cate
 import SideBarPriceRanger from "./filters/SideBarPriceRanger";
 import { ShopSearchParams } from "./filters/filters.types";
 
-async function ShopPage({ searchParams }: { searchParams: ShopSearchParams }) {
+async function getShopData(searchParams: ShopSearchParams) {
   "use cache";
   cacheLife("max");
 
-  const [
-    products,
-    productsCount,
-    categoriesWithProductsCount,
-    productMinMaxPrice,
-  ] = await Promise.all([
+  return await Promise.all([
     getFilteredProducts(searchParams),
     getFilteredProductsCount(searchParams),
     getCategoriesWithProductsCount(),
     getProductsMinMaxPrice(),
   ]);
+}
+
+async function ShopPage({ searchParams }: { searchParams: ShopSearchParams }) {
+  const [
+    products,
+    productsCount,
+    categoriesWithProductsCount,
+    productMinMaxPrice,
+  ] = await getShopData(searchParams);
 
   return (
     <div className="bg-slate-200">

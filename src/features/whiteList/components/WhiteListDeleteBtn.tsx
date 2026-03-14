@@ -17,7 +17,7 @@ function WhiteListDeleteBtn({ productId }: { productId: number }) {
         setIsPending(true);
         const response = await deleteFromWhiteList(productId);
         if (response.status === "success") toast.success(response.message);
-        if (response.status === "error") toast.success(response.error.message);
+        if (response.status === "error") toast.error(response.error.message);
         setIsPending(false);
       }}
     />

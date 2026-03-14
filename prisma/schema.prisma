@@ -114,10 +114,10 @@ model Product {
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt()
 
-  category      Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category      Category        @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  user          User            @relation(fields: [userId], references: [id], onDelete: Cascade)
   cartItem      CartItem[]
-  whiteListItem WhiteListItem?
+  whiteListItem WhiteListItem[]
   reviews       Review[]
 
   @@index([price])
@@ -155,7 +155,7 @@ model WhiteListItem {
   id        Int      @id @default(autoincrement())
   userId    String?  @map("user_id")
   guestId   String?  @map("guest_id")
-  productId Int      @unique @map("product_id")
+  productId Int      @map("product_id")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
 

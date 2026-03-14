@@ -1,6 +1,6 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "notebook.defaultFormatter": "esbenp.prettier-vscode",
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
-  "typescript.tsserver.maxTsServerMemory": 4096
+  "notebook.defaultFormatter": "esbenp.prettier-vscode"
+  // "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  // "typescript.tsserver.maxTsServerMemory": 4096
 }
