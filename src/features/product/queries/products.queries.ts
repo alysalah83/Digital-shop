@@ -2,8 +2,9 @@ import prisma from "@/lib/prisma";
 import { PAGINATION_ITEMS_PER_PAGE } from "@/app/shop/(shop)/_components/shop.consts";
 import { Prisma } from "@/generated/prisma/client";
 import { ShopSearchParams } from "@/app/shop/(shop)/_components/filters/filters.types";
+import { catchError } from "@/lib/error/catchError";
 
-export async function getProducts({
+export const getProducts = catchError(async function ({
   where,
   orderBy,
   take,
@@ -21,28 +22,30 @@ export async function getProducts({
     ...(skip && { skip }),
   });
   return products;
-}
+});
 
-export async function getProductsCount() {
+export const getProductsCount = catchError(async function () {
   return await prisma.product.count();
-}
+});
 
-export async function getProductsWithReviews({
-  orderBy,
-  take,
-}: {
-  orderBy?: Prisma.ProductOrderByWithRelationInput;
-  take?: number;
-}) {
-  const products = await prisma.product.findMany({
-    ...(orderBy && { orderBy }),
-    ...(take && { take }),
-    include: { reviews: true },
-  });
-  return products;
-}
+export const getProductsWithReviews = catchError(
+  async function getProductsWithReviews({
+    orderBy,
+    take,
+  }: {
+    orderBy?: Prisma.ProductOrderByWithRelationInput;
+    take?: number;
+  }) {
+    const products = await prisma.product.findMany({
+      ...(orderBy && { orderBy }),
+      ...(take && { take }),
+      include: { reviews: true },
+    });
+    return products;
+  },
+);
 
-export async function getFilteredProducts({
+export const getFilteredProducts = catchError(async function ({
   category,
   page,
   sortBy,
@@ -82,9 +85,9 @@ export async function getFilteredProducts({
   });
 
   return products;
-}
+});
 
-export async function getFilteredProductsCount({
+export const getFilteredProductsCount = catchError(async function ({
   category,
   min,
   max,
@@ -104,9 +107,9 @@ export async function getFilteredProductsCount({
     : { price };
 
   return await prisma.product.count({ where });
-}
+});
 
-export async function getProductsMinMaxPrice() {
+export const getProductsMinMaxPrice = catchError(async function () {
   const result = await prisma.product.aggregate({
     _min: {
       price: true,
@@ -117,4 +120,4 @@ export async function getProductsMinMaxPrice() {
   });
 
   return { minPrice: result._min.price, maxPrice: result._max.price };
-}
+});

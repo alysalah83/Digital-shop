@@ -1,7 +1,8 @@
 import { User } from "@/generated/prisma/client";
+import { catchError } from "@/lib/error/catchError";
 import prisma from "@/lib/prisma";
 
-export async function getWhitelistProducts({
+export const getWhitelistProducts = catchError(async function ({
   userId,
   guestId,
 }: {
@@ -14,4 +15,4 @@ export async function getWhitelistProducts({
     where: { ...(userId && { userId }), ...(guestId && { guestId }) },
     include: { product: true },
   });
-}
+});

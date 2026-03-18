@@ -2,7 +2,7 @@ import EmptyPage from "@/shared/components/common/EmptyPage";
 import PageHeader from "@/shared/components/layouts/PageHeader";
 import { User } from "@/generated/prisma/client";
 import { getCartItemsProducts } from "@/features/cart/queries/cart.queries";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 import CartTable from "./CartTable";
 import CartSubtotal from "@/app/cart/_components/CartSubtotal";
 
@@ -15,6 +15,8 @@ async function CartPage({
 }) {
   "use cache";
   cacheLife("max");
+  if (userId) cacheTag(`cart-${userId}`);
+  if (guestId) cacheTag(`cart-${guestId}`);
   const cartProducts = await getCartItemsProducts({ userId, guestId });
 
   const cartItemsCount = cartProducts.length;

@@ -1,24 +1,27 @@
 import { User } from "@/generated/prisma/client";
+import { catchError } from "@/lib/error/catchError";
 import prisma from "@/lib/prisma";
 
-export async function getCartItemsProducts({
-  userId,
-  guestId,
-}: {
-  userId?: User["id"];
-  guestId?: string;
-}) {
-  if (!userId && !guestId) return [];
-  return await prisma.cartItem.findMany({
-    where: {
-      ...(userId && { userId }),
-      ...(guestId && { guestId }),
-    },
-    include: { product: true },
-  });
-}
+export const getCartItemsProducts = catchError(
+  async function getCartItemsProducts({
+    userId,
+    guestId,
+  }: {
+    userId?: User["id"];
+    guestId?: string;
+  }) {
+    if (!userId && !guestId) return [];
+    return await prisma.cartItem.findMany({
+      where: {
+        ...(userId && { userId }),
+        ...(guestId && { guestId }),
+      },
+      include: { product: true },
+    });
+  },
+);
 
-export async function getIsProductInCart({
+export const getIsProductInCart = catchError(async function getIsProductInCart({
   productId,
   userId,
   guestId,
@@ -29,13 +32,12 @@ export async function getIsProductInCart({
 }) {
   if (!userId && !guestId) return false;
 
-  return await prisma.cartItem
-    .count({
-      where: {
-        productId,
-        ...(userId && { userId }),
-        ...(guestId && { guestId }),
-      },
-    })
-    .then((count) => count > 0);
-}
+  const count = await prisma.cartItem.count({
+    where: {
+      productId,
+      ...(userId && { userId }),
+      ...(guestId && { guestId }),
+    },
+  });
+  return count > 0;
+});

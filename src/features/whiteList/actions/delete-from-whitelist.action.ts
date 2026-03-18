@@ -1,6 +1,7 @@
 "use server";
 
 import { auth } from "@/lib/auth";
+import { toAppError } from "@/lib/error/convertErrorToAppError";
 import prisma from "@/lib/prisma";
 import { ActionResponse } from "@/shared/types";
 import { updateTag } from "next/cache";
@@ -32,6 +33,6 @@ export async function deleteFromWhiteList(
       message: "product has been removed from whitelist",
     };
   } catch (err) {
-    return { status: "error", error: { message: "" } };
+    return { status: "error", error: toAppError(err) };
   }
 }

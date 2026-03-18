@@ -2,6 +2,7 @@
 
 import { createGuest } from "@/features/auth/actions/create-guest.action";
 import { auth } from "@/lib/auth";
+import { toAppError } from "@/lib/error/convertErrorToAppError";
 import prisma from "@/lib/prisma";
 import { ActionResponse } from "@/shared/types";
 import { updateTag } from "next/cache";
@@ -54,6 +55,6 @@ export async function addToCart(productId: number): Promise<ActionResponse> {
       message: `Cart quantity updated to ${cartItem.quantity + quantity}`,
     };
   } catch (error) {
-    return { status: "error", error: { message: "" } };
+    return { status: "error", error: toAppError(error) };
   }
 }
