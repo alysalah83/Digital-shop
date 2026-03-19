@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
 import Link from "next/link";
 import PageHeader from "@/shared/components/layouts/PageHeader";
 import { ICONS_MAP } from "@/shared/icons/iconsMap";
@@ -15,7 +14,6 @@ function Error({ error, reset }: ErrorProps) {
   const RetryIcon = ICONS_MAP.loop;
   const BackIcon = ICONS_MAP.arrowLeft;
 
-
   return (
     <>
       <PageHeader heading="Something Went Wrong" />
@@ -26,12 +24,9 @@ function Error({ error, reset }: ErrorProps) {
           </div>
           <div className="flex flex-col items-center gap-3">
             <h2 className="text-center text-2xl font-semibold tracking-wide text-blue-950 capitalize">
-              sorry, something broke on our side
+              an error has occurred:
             </h2>
-            <p className="text-center text-lg text-gray-500">
-              Please try again. If the problem persists, return home and
-              continue shopping.
-            </p>
+            <p className="text-center text-lg text-gray-500">{error.message}</p>
           </div>
           <div className="flex flex-col items-center gap-4 sm:flex-row">
             <button
