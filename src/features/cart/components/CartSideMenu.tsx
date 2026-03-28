@@ -46,10 +46,15 @@ function CartSideMenu({ isMenuOpen, onMenuClose }: CartSideMenu) {
           <span>Subtotal :</span>
           <span className="font-bold">${cartItemsTotalPrice}</span>
         </div>
-        <div>
-          <Link href="/cart" className="w-full">
+        <div className="flex items-center gap-2">
+          <Link href="/cart" className="flex-1">
             <Button onClick={onMenuClose} size="large" scratch={true}>
               view cart
+            </Button>
+          </Link>
+          <Link href="/checkout" className="flex-1">
+            <Button onClick={onMenuClose} size="large" scratch={true}>
+              Checkout
             </Button>
           </Link>
         </div>

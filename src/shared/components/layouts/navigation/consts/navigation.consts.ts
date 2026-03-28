@@ -22,6 +22,7 @@ const NAVIGATION_LINKS = [
 const ALL_LINKS = [
   ...NAVIGATION_LINKS,
   { label: "Cart", href: "/cart" },
+  { label: "Checkout", href: "/checkout" },
   { label: "Whitelist", href: "/whitelist" },
   { label: "Account setting", href: "/account/setting" },
   { label: "Add Product", href: "/account/addProduct" },

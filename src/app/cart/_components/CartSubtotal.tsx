@@ -1,5 +1,6 @@
 import { CartProductItem } from "@/features/cart/types/cart.types";
 import Button from "@/shared/components/common/Button";
+import Link from "next/link";
 
 function CartSubtotal({ cartProducts }: { cartProducts: CartProductItem[] }) {
   const itemsBalance = cartProducts.reduce(
@@ -26,7 +27,9 @@ function CartSubtotal({ cartProducts }: { cartProducts: CartProductItem[] }) {
             <span>${itemsBalance}</span>
           </li>
         </ul>
-        <Button>process check out</Button>
+        <Link href="/checkout">
+          <Button>process check out</Button>
+        </Link>
       </div>
     </div>
   );

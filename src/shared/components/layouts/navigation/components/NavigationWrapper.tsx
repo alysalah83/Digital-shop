@@ -15,7 +15,16 @@ function NavigationWrapper({ children }: NavigationWrapperProps) {
 
   useLayoutEffect(() => {
     if (!navRef.current) return;
-    setNavHight(navRef.current.offsetHeight);
+    const observer = new ResizeObserver(([entry]) => {
+      const navHight = entry.contentRect.height;
+      const id = setTimeout(() => setNavHight(navHight), 300);
+
+      return () => clearTimeout(id);
+    });
+
+    observer.observe(navRef.current);
+
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -35,7 +44,7 @@ function NavigationWrapper({ children }: NavigationWrapperProps) {
   return (
     <div
       style={{
-        height: `${navHight}px`,
+        height: `${navHight + 40}px`,
       }}
       className="bg-slate-200"
       ref={sentinelRef}

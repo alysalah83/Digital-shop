@@ -17,6 +17,24 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   trustHost: true,
   callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      const protectedRoutes = [
+        "/checkout",
+        "/account/settings",
+        "/account/addProduct",
+        "/account/manageProducts",
+      ];
+
+      const isProtected = protectedRoutes.some((route) =>
+        nextUrl.pathname.startsWith(route),
+      );
+
+      if (isProtected && !isLoggedIn) return false;
+
+      return true;
+    },
+
     async signIn({ user }) {
       try {
         const userId = user.id;
