@@ -15,11 +15,11 @@ function NavigationWrapper({ children }: NavigationWrapperProps) {
 
   useLayoutEffect(() => {
     if (!navRef.current) return;
-    const observer = new ResizeObserver(([entry]) => {
-      const navHight = entry.contentRect.height;
-      const id = setTimeout(() => setNavHight(navHight), 300);
 
-      return () => clearTimeout(id);
+    let id: ReturnType<typeof setTimeout>;
+    const observer = new ResizeObserver(([entry]) => {
+      clearTimeout(id);
+      id = setTimeout(() => setNavHight(entry.contentRect.height), 300);
     });
 
     observer.observe(navRef.current);
