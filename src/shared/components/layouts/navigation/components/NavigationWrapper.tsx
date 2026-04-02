@@ -19,7 +19,8 @@ function NavigationWrapper({ children }: NavigationWrapperProps) {
     let id: ReturnType<typeof setTimeout>;
     const observer = new ResizeObserver(([entry]) => {
       clearTimeout(id);
-      id = setTimeout(() => setNavHight(entry.contentRect.height), 300);
+      const navHight = entry.contentRect.height;
+      id = setTimeout(() => setNavHight(navHight), 500);
     });
 
     observer.observe(navRef.current);
