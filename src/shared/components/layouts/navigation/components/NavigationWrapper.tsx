@@ -51,10 +51,10 @@ function NavigationWrapper({ children }: NavigationWrapperProps) {
       ref={sentinelRef}
     >
       <nav
-        className={`fixed top-0 right-0 left-0 z-[999] grid bg-white px-4 transition-all duration-300 md:px-7 lg:grid-cols-3 ${
+        className={`fixed top-0 right-0 left-0 z-[999] grid bg-white/90 px-2 backdrop-blur-sm transition-all duration-300 sm:px-4 md:px-7 lg:grid-cols-3 ${
           isScrolled
             ? "grid-rows-[auto_auto] gap-y-2 py-2 shadow-md md:py-2"
-            : "grid-rows-[auto_auto_auto] gap-y-10 py-5 md:py-5 md:pb-0 lg:grid-rows-2"
+            : "grid-rows-[auto_auto_auto] gap-y-4 py-5 md:py-5 md:pb-0 lg:grid-rows-2 lg:gap-y-10"
         }`}
         data-scrolled={isScrolled}
         ref={navRef}

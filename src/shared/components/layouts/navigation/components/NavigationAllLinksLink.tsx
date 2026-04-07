@@ -22,13 +22,16 @@ function NavigationAllLinksLink() {
 
   return (
     <li
-      className={`relative cursor-pointer transition duration-300 ${
+      className={`relative cursor-pointer transition duration-300 select-none ${
         isMenuOpen ? "text-blue-800" : ""
       } hover:text-blue-800`}
       onPointerEnter={handelOpenMenu}
       onPointerLeave={handleCloseMenu}
+      role="button"
+      tabIndex={0}
+      onClick={handleToggleMenu}
     >
-      <div className="flex items-center gap-1" onClick={handleToggleMenu}>
+      <div className="flex items-center gap-1">
         <span>Pages</span>
         <span>
           {isMenuOpen ? (
@@ -64,7 +67,11 @@ function WindowLink({ link, onClick }: WindowLinkProps) {
 
   return (
     <Link href={href} onClick={onClick}>
-      <li className="px-8 py-2 text-sm font-medium text-gray-500 transition duration-300 hover:bg-gray-200/40 hover:text-blue-600">
+      <li
+        role="button"
+        tabIndex={0}
+        className="px-8 py-2 text-sm font-medium text-gray-500 transition duration-300 select-none hover:bg-gray-200/40 hover:text-blue-600"
+      >
         {label}
       </li>
     </Link>

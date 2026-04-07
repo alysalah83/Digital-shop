@@ -22,7 +22,7 @@ function Navigation() {
         <NavigationLinks />
       </div>
 
-      <div className="col-span-2 row-start-2 row-end-3 ml-4 flex justify-center gap-7 self-center pb-0 md:gap-10 md:border-t md:border-gray-200 md:pt-5 lg:col-start-3 lg:row-start-1 lg:row-end-2 lg:items-center lg:border-0">
+      <div className="col-span-2 row-start-2 row-end-3 flex justify-center gap-4 self-center pb-0 sm:ml-4 sm:gap-7 md:gap-10 md:border-t md:border-gray-200 md:pt-5 lg:col-start-3 lg:row-start-1 lg:row-end-2 lg:items-center lg:border-0">
         <Suspense fallback={<AuthButtonSkeleton />}>
           <AuthButton />
         </Suspense>
