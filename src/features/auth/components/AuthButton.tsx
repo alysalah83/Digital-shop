@@ -25,9 +25,9 @@ async function AuthButton() {
   ) : (
     <Link href="/login">
       <button type="button" className="flex cursor-pointer items-center gap-2">
-        <ICONS_MAP.person className="h-7 w-7 fill-blue-700" />
+        <ICONS_MAP.person className="h-6 w-6 fill-blue-700 sm:h-7 sm:w-7" />
         <div className="flex flex-col justify-between">
-          <h4 className="text-xs tracking-wider text-gray-400 uppercase">
+          <h4 className="text-xs tracking-wide text-gray-400 uppercase sm:tracking-wider">
             account
           </h4>
           <p className="text-start font-semibold capitalize">sign in</p>

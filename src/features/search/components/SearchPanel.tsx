@@ -20,7 +20,7 @@ function SearchPanel({ initSearchResults }: { initSearchResults: Product[] }) {
   );
 
   return (
-    <div className="fixed top-1/2 left-1/2 z-50 mx-auto h-11/12 min-w-11/12 -translate-1/2 overflow-y-auto rounded-xl bg-white px-6 py-8 shadow-lg md:px-8 lg:p-16 xl:min-w-7xl">
+    <div className="fixed top-1/2 left-1/2 z-[99999999] mx-auto h-11/12 min-w-11/12 -translate-1/2 overflow-y-auto rounded-xl bg-white px-6 py-8 shadow-lg md:px-8 lg:p-16 xl:min-w-7xl">
       <div className="relative mb-10">
         <input
           className="w-full rounded-lg border border-gray-300 px-10 py-3 text-lg text-gray-600 outline-0 transition duration-300 focus:ring-2 focus:ring-blue-600"

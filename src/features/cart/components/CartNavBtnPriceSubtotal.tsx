@@ -16,7 +16,7 @@ function CartNavBtnPriceSubtotal({
     <p className="text-sm font-semibold capitalize">
       $
       {(isInit ? initialCartItemsPriceSubtotal : cartProductsSubtotal).toFixed(
-        2,
+        1,
       )}
     </p>
   );

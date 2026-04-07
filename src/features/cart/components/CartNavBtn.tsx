@@ -42,9 +42,9 @@ async function CartNavBtn({
     <>
       <CartSideMenuBtn cartProducts={cartProductItems}>
         <CartNavBtnItemsCount CartNavBtnItemsCount={cartItemsCount} />
-        <ICONS_MAP.cart className="h-6 w-6 fill-blue-700" />
+        <ICONS_MAP.cart className="h-6 w-6 fill-blue-700 sm:h-7 sm:w-7" />
         <div className="flex flex-col items-center justify-between">
-          <h4 className="text-xs font-medium tracking-wider text-gray-400 uppercase">
+          <h4 className="text-xs font-medium tracking-wide text-gray-400 uppercase sm:tracking-wider">
             cart
           </h4>
           <CartNavBtnPriceSubtotal

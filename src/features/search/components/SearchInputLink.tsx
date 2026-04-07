@@ -15,7 +15,7 @@ async function SearchInputLink() {
   return (
     <SearchInputLinkWrapper initSearchResults={initSearchResults}>
       <div className="flex cursor-pointer items-center justify-between gap-4 rounded-lg border border-gray-500 px-4 py-2 ring-slate-400 transition duration-200 hover:ring active:ring md:gap-6 lg:gap-10">
-        <span className="text-sm font-medium text-gray-700/50">
+        <span className="text-sm font-medium overflow-ellipsis whitespace-nowrap text-gray-700/50">
           I am shopping for...
         </span>
         <span>

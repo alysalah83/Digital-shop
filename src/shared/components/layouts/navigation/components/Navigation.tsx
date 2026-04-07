@@ -8,30 +8,37 @@ import CartNavBtn from "@/features/cart/components/CartNavBtn";
 import CartNavBtnSkeleton from "@/features/cart/components/CartNavBtnSkeleton";
 import NavigationWrapper from "./NavigationWrapper";
 import WhitelistNavBtn from "@/features/whiteList/components/WhiteListNavBtn";
+import NavigationMobileMenu from "./NavigationMobileMenu";
 
 function Navigation() {
   return (
     <NavigationWrapper>
-      <div className="mb-4 flex flex-wrap items-center justify-between gap-6 sm:col-span-2 lg:mb-0 lg:w-auto lg:justify-start lg:gap-12">
-        <Logo />
+      <div className="flex flex-wrap items-center gap-3 sm:gap-4 md:gap-6 lg:flex-nowrap">
+        <div className="shrink-0">
+          <Logo />
+        </div>
 
-        <SearchInputLink />
+        <div className="flex-1 sm:min-w-54">
+          <SearchInputLink />
+        </div>
+
+        <div className="flex shrink-0 items-center gap-3 sm:gap-4 md:gap-5">
+          <Suspense fallback={<AuthButtonSkeleton />}>
+            <AuthButton />
+          </Suspense>
+          <Suspense fallback={<CartNavBtnSkeleton />}>
+            <CartNavBtn />
+          </Suspense>
+          <WhitelistNavBtn />
+          <NavigationMobileMenu />
+        </div>
       </div>
 
-      <div className="col-span-2 mb-2 md:mb-0 md:border-t md:border-gray-200 md:py-5 lg:col-start-1 lg:col-end-4">
+      <div className="mt-3 hidden border-t border-gray-100 pt-3 lg:block">
         <NavigationLinks />
-      </div>
-
-      <div className="col-span-2 row-start-2 row-end-3 flex justify-center gap-4 self-center pb-0 sm:ml-4 sm:gap-7 md:gap-10 md:border-t md:border-gray-200 md:pt-5 lg:col-start-3 lg:row-start-1 lg:row-end-2 lg:items-center lg:border-0">
-        <Suspense fallback={<AuthButtonSkeleton />}>
-          <AuthButton />
-        </Suspense>
-        <Suspense fallback={<CartNavBtnSkeleton />}>
-          <CartNavBtn />
-        </Suspense>
-        <WhitelistNavBtn />
       </div>
     </NavigationWrapper>
   );
 }
+
 export default Navigation;

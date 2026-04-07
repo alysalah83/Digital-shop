@@ -9,7 +9,7 @@ interface NavigationWrapperProps {
 
 function NavigationWrapper({ children }: NavigationWrapperProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [navHight, setNavHight] = useState(218);
+  const [navHeight, setNavHeight] = useState(72);
   const navRef = useRef<HTMLElement>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
@@ -19,24 +19,20 @@ function NavigationWrapper({ children }: NavigationWrapperProps) {
     let id: ReturnType<typeof setTimeout>;
     const observer = new ResizeObserver(([entry]) => {
       clearTimeout(id);
-      const navHight = entry.contentRect.height;
-      id = setTimeout(() => setNavHight(navHight), 500);
+      const h = entry.contentRect.height;
+      id = setTimeout(() => setNavHeight(h), 100);
     });
 
     observer.observe(navRef.current);
-
     return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
     if (!sentinelRef.current) return;
-    const options = {
-      threshold: NAVIGATION_SHRINK_THRESHOLD,
-    };
-
-    const observer = new IntersectionObserver(([entry]) => {
-      setIsScrolled(!entry.isIntersecting);
-    }, options);
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsScrolled(!entry.isIntersecting),
+      { threshold: NAVIGATION_SHRINK_THRESHOLD },
+    );
 
     observer.observe(sentinelRef.current);
     return () => observer.disconnect();
@@ -44,17 +40,13 @@ function NavigationWrapper({ children }: NavigationWrapperProps) {
 
   return (
     <div
-      style={{
-        height: `${navHight + 40}px`,
-      }}
+      style={{ height: `${navHeight + 32}px` }}
       className="bg-slate-200"
       ref={sentinelRef}
     >
       <nav
-        className={`fixed top-0 right-0 left-0 z-[999] grid bg-white/90 px-2 backdrop-blur-sm transition-all duration-300 sm:px-4 md:px-7 lg:grid-cols-3 ${
-          isScrolled
-            ? "grid-rows-[auto_auto] gap-y-2 py-2 shadow-md md:py-2"
-            : "grid-rows-[auto_auto_auto] gap-y-4 py-5 md:py-5 md:pb-0 lg:grid-rows-2 lg:gap-y-10"
+        className={`fixed top-0 right-0 left-0 z-[999] overflow-visible bg-white/95 px-4 backdrop-blur-md transition-all duration-300 sm:px-5 md:px-8 ${
+          isScrolled ? "py-2 shadow-lg shadow-black/5" : "py-3 md:py-4"
         }`}
         data-scrolled={isScrolled}
         ref={navRef}

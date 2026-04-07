@@ -8,8 +8,8 @@ function WhitelistNavBtn() {
         href="/whitelist"
         className="flex cursor-pointer items-center gap-2"
       >
-        <ICONS_MAP.filledHeart className="h-7 w-7 fill-red-500" />
-        <h4 className="text-xs font-medium tracking-wider text-gray-400 uppercase">
+        <ICONS_MAP.filledHeart className="h-6 w-6 fill-red-500 sm:h-7 sm:w-7" />
+        <h4 className="text-xs font-medium tracking-wide text-gray-400 uppercase sm:tracking-wider">
           WhiteList
         </h4>
       </Link>

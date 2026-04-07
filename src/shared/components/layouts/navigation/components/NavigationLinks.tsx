@@ -6,7 +6,7 @@ function NavigationLinks() {
   const navigationLinks = NAVIGATION_LINKS;
 
   return (
-    <menu className="flex justify-center gap-4 font-semibold text-gray-700 sm:gap-5 sm:text-lg lg:gap-10 lg:text-xl">
+    <menu className="flex items-center gap-5 font-semibold text-gray-700 lg:gap-8 xl:gap-10 lg:text-[15px] xl:text-base">
       {navigationLinks.map((link) => (
         <NavigationLink linkItem={link} key={link.href} />
       ))}

@@ -21,7 +21,7 @@ function CartSideMenu({ isMenuOpen, onMenuClose }: CartSideMenu) {
 
   return (
     <div
-      className={`fixed right-0 bottom-0 z-40 flex h-screen max-w-[85%] flex-col transition-all duration-500 ${isMenuOpen ? "translate-x-0" : "translate-x-full"} min-w-3xs bg-white p-4 lg:min-w-96 lg:p-8 xl:min-w-lg`}
+      className={`fixed right-0 bottom-0 z-[9999999] flex h-screen max-w-[85%] flex-col transition-all duration-500 ${isMenuOpen ? "translate-x-0" : "translate-x-full"} min-w-3xs bg-white p-4 lg:min-w-96 lg:p-8 xl:min-w-lg`}
     >
       <div className="mb-12 flex items-center justify-between border-b border-gray-200 pb-5">
         <h2 className="text-xl font-bold tracking-wide capitalize lg:text-2xl lg:font-semibold">

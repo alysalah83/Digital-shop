@@ -7,7 +7,9 @@ function Logo() {
     <Link href="/">
       <div className="flex items-center gap-2">
         <Image src={logo} width={40} alt="Logo" />
-        <span className="text-3xl font-bold tracking-wide">ShopDigital</span>
+        <span className="text-2xl font-semibold tracking-wide lg:text-3xl lg:font-bold">
+          ShopDigital
+        </span>
       </div>
     </Link>
   );
