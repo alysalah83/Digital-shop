@@ -1,23 +1,13 @@
 "use client";
 
-import { useCart } from "@/shared/store/cartStore";
+import { useCartQuery } from "../hooks/useCartQuery";
 
-function CartNavBtnPriceSubtotal({
-  initialCartItemsPriceSubtotal,
-}: {
-  initialCartItemsPriceSubtotal: number;
-}) {
-  const cartProductsSubtotal = useCart((state) => state.cartProductsSubtotal());
-
-  const isInit =
-    initialCartItemsPriceSubtotal !== 0 && cartProductsSubtotal === 0;
+function CartNavBtnPriceSubtotal() {
+  const { cartItemsSubtotal } = useCartQuery();
 
   return (
     <p className="text-sm font-semibold capitalize">
-      $
-      {(isInit ? initialCartItemsPriceSubtotal : cartProductsSubtotal).toFixed(
-        1,
-      )}
+      ${cartItemsSubtotal.toFixed(1)}
     </p>
   );
 }

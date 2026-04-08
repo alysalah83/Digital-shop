@@ -1,19 +1,13 @@
 "use client";
 
-import { useCart } from "@/shared/store/cartStore";
+import { useCartQuery } from "../hooks/useCartQuery";
 
-function CartNavBtnItemsCount({
-  CartNavBtnItemsCount,
-}: {
-  CartNavBtnItemsCount: number;
-}) {
-  const cartProductsCount = useCart((state) => state.cartProductsCount());
-
-  const isInit = CartNavBtnItemsCount !== 0 && cartProductsCount === 0;
+function CartNavBtnItemsCount() {
+  const { cartItemsCount } = useCartQuery();
 
   return (
     <span className="absolute -top-2 -left-2 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-blue-600 text-xs font-semibold text-blue-50">
-      {isInit ? CartNavBtnItemsCount : cartProductsCount}
+      {cartItemsCount}
     </span>
   );
 }

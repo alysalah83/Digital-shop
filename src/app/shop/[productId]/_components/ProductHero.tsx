@@ -9,8 +9,8 @@ import {
   ModalTrigger,
 } from "@/shared/components/ui/Modal";
 import ButtonIcon from "@/shared/components/common/ButtonIcon";
-import Button from "@/shared/components/common/Button";
 import { useProductDetail } from "./useProductDetail";
+import PurchaseProductBtn from "./PurchaseProductBtn";
 
 function ProductHero({ product }: { product: ProductWithReviews }) {
   const { image, name, discountPercentage, reviews, stock, rating, price } =
@@ -107,7 +107,7 @@ function ProductHero({ product }: { product: ProductWithReviews }) {
           </div>
           <div className="flex items-center gap-6">
             <ProductStockCount stock={stock} />
-            <Button>purchase now</Button>
+            <PurchaseProductBtn productId={product.id} />
           </div>
         </div>
       </div>

@@ -32,9 +32,7 @@ function SearchInputLinkWrapper({
               onClick={() => setIsSearchPanelOpened(false)}
               aria-hidden="true"
             />
-            <QueryProvider>
-              <SearchPanel initSearchResults={initSearchResults} />
-            </QueryProvider>
+            <SearchPanel initSearchResults={initSearchResults} />
           </>,
           document.body,
         )}

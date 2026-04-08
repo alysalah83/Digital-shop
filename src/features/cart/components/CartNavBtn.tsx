@@ -6,6 +6,9 @@ import CartNavBtnItemsCount from "./CartNavBtnItemsCount";
 import CartNavBtnPriceSubtotal from "./CartNavBtnPriceSubtotal";
 import { getCartItemsProducts } from "../queries/cart.queries";
 import { cacheLife, cacheTag } from "next/cache";
+import { hydrate, dehydrate, HydrationBoundary } from "@tanstack/react-query";
+import { getQueryClient } from "@/shared/providers/getQueryClient";
+import { CART_QUERY_KEY } from "../hooks/useCartQuery";
 import { User } from "@/generated/prisma/client";
 
 async function CartNavBtnDataLayer() {
@@ -29,30 +32,28 @@ async function CartNavBtn({
   if (userId) cacheTag(`cart-${userId}`);
   if (guestId) cacheTag(`cart-${guestId}`);
 
-  const cartProductItems = await getCartItemsProducts({ userId, guestId });
+  const queryClient = getQueryClient();
 
-  const cartItemsCount = cartProductItems.length;
-  const cartItemsTotalPrice = Number(
-    cartProductItems
-      .reduce((sum, item) => sum + item.product.price, 0)
-      .toFixed(2),
-  );
+  await queryClient.prefetchQuery({
+    queryKey: CART_QUERY_KEY,
+    queryFn: async () => {
+      return await getCartItemsProducts({ userId, guestId });
+    },
+  });
 
   return (
-    <>
-      <CartSideMenuBtn cartProducts={cartProductItems}>
-        <CartNavBtnItemsCount CartNavBtnItemsCount={cartItemsCount} />
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <CartSideMenuBtn>
+        <CartNavBtnItemsCount />
         <ICONS_MAP.cart className="h-6 w-6 fill-blue-700 sm:h-7 sm:w-7" />
         <div className="flex flex-col items-center justify-between">
           <h4 className="text-xs font-medium tracking-wide text-gray-400 uppercase sm:tracking-wider">
             cart
           </h4>
-          <CartNavBtnPriceSubtotal
-            initialCartItemsPriceSubtotal={cartItemsTotalPrice}
-          />
+          <CartNavBtnPriceSubtotal />
         </div>
       </CartSideMenuBtn>
-    </>
+    </HydrationBoundary>
   );
 }
 

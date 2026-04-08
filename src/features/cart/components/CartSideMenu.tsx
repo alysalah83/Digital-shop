@@ -1,10 +1,12 @@
+"use client";
+
 import Button from "@/shared/components/common/Button";
 import { ICONS_MAP } from "@/shared/icons/iconsMap";
 import Link from "next/link";
-
 import EmptyPage from "@/shared/components/common/EmptyPage";
+
 import CartSideMenuItem from "./CartSideMenuItem";
-import { useCart } from "@/shared/store/cartStore";
+import { useCartQuery } from "../hooks/useCartQuery";
 
 interface CartSideMenu {
   isMenuOpen: boolean;
@@ -12,12 +14,7 @@ interface CartSideMenu {
 }
 
 function CartSideMenu({ isMenuOpen, onMenuClose }: CartSideMenu) {
-  const { carProductItems } = useCart();
-
-  const cartItemsCount = carProductItems.length;
-  const cartItemsTotalPrice = Number(
-    carProductItems.reduce((sum, item) => sum + item.price, 0).toFixed(2),
-  );
+  const { cartItems, cartItemsCount, cartItemsSubtotal } = useCartQuery();
 
   return (
     <div
@@ -34,8 +31,8 @@ function CartSideMenu({ isMenuOpen, onMenuClose }: CartSideMenu) {
       </div>
       {cartItemsCount > 0 ? (
         <ul className="flex flex-col gap-6 overflow-auto lg:gap-8">
-          {carProductItems?.map((product) => (
-            <CartSideMenuItem product={product} key={product.id} />
+          {cartItems?.map((item) => (
+            <CartSideMenuItem product={item.product} key={item.id} />
           ))}
         </ul>
       ) : (
@@ -44,7 +41,7 @@ function CartSideMenu({ isMenuOpen, onMenuClose }: CartSideMenu) {
       <div className="mt-auto flex flex-col gap-5 border-t border-gray-200 pt-5">
         <div className="flex items-center justify-between text-lg font-semibold tracking-wide lg:text-xl">
           <span>Subtotal :</span>
-          <span className="font-bold">${cartItemsTotalPrice}</span>
+          <span className="font-bold">${cartItemsSubtotal}</span>
         </div>
         <div className="flex items-center gap-2">
           <Link href="/cart" className="flex-1">

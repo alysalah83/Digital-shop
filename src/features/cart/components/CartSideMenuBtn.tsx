@@ -1,30 +1,20 @@
 "use client";
 
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import CartSideMenu from "./CartSideMenu";
-import { useCart } from "@/shared/store/cartStore";
-import { CartProductItem } from "../types/cart.types";
 import { createPortal } from "react-dom";
 
 interface CartSideMenuBtn {
   children: React.ReactNode;
-  cartProducts: CartProductItem[];
 }
 
-function CartSideMenuBtn({ children, cartProducts }: CartSideMenuBtn) {
+function CartSideMenuBtn({ children }: CartSideMenuBtn) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
-
-  const { setCartItems } = useCart();
 
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
-  useLayoutEffect(() => {
-    const clientCartProducts = cartProducts.map((item) => item.product);
-    setCartItems(clientCartProducts);
-  }, [cartProducts]);
 
   if (!isMounted) return null;
 

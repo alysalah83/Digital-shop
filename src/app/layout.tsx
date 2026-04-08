@@ -1,6 +1,7 @@
 import ToasterConfig from "@/shared/components/layouts/ToasterConfig";
 import Footer from "@/shared/components/layouts/footer/Footer";
 import Navigation from "@/shared/components/layouts/navigation/components/Navigation";
+import QueryProvider from "@/shared/providers/QueryProvider";
 import "@/styles/globals.css";
 import { Inter } from "next/font/google";
 
@@ -25,8 +26,11 @@ export default function RootLayout({
     >
       <body className="relative flex min-h-screen w-full flex-col overflow-x-hidden text-base text-slate-700">
         <ToasterConfig />
-        <Navigation />
-        {children}
+        <QueryProvider>
+          <Navigation />
+          {children}
+        </QueryProvider>
+
         <Footer />
       </body>
     </html>
